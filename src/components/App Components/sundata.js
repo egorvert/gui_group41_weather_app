@@ -1,14 +1,14 @@
-import '../style/Style.css';
+import '../../style/Style.css';
 
 function Sunbox() {
     return(
-        <div>
-            <div className='sunbox'>
+        <div className='Top-bar'>
+            <div className='Sunbox'>
                 <p>
                     Sunrise
                 </p>
             </div>
-            <div className='sunbox'>
+            <div className='Sunbox'>
                     <p>
                         Sunset
                     </p>
