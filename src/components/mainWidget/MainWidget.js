@@ -3,8 +3,11 @@ import './MainWidget.css'
 import LocationPin from '../../assets/icons/ui/locationPin.svg'
 import GreenTick from '../../assets/icons/ui/greenTick.svg'
 import LargeSun from '../../assets/icons/weather/sunLarge.svg'
+import { useState, useEffect } from 'react';
 
-const MainWidget = () => {
+function MainWidget() {
+
+  const [Location, SetLocation] = useState("London")
   return (
     <div className='wrapper'>
         <div className='widget-header'>

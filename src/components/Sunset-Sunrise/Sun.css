@@ -1,0 +1,50 @@
+.Wrapper{
+    right: 10rem;
+    display: flex;
+    justify-content: flex-start;
+
+    position: absolute;
+    top: 5vh;
+    margin-right: 5pt;
+}
+.Wrapper-left {
+    width: 80px;
+    height: 120px;
+    border-radius: 20px;
+    background-color: rgba(246, 246, 246, 0.5);
+
+    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75);
+    box-shadow: inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    backdrop-filter: blur(10px);
+
+    color: #000;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+
+}
+
+.Wrapper-right {
+    width: 80px;
+    height: 120px;
+    border-radius: 20px;
+    background-color: rgba(246, 246, 246, 0.5);
+
+    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75);
+    box-shadow: inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    backdrop-filter: blur(10px);
+
+    color: #000;
+
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    margin-left: 15pt;
+}
+
+.Top, .Sunset-Time, .Sunrise-Time{
+    align-self: center;
+}
