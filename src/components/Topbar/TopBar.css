@@ -1,0 +1,16 @@
+.Wrapper{
+    display: flex;
+    left: 5rem;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    padding-top: 5vh;
+}
+.Search{
+    flex-grow: 1;
+    margin-right: 10pt;
+
+}
+.Sun{
+    flex-grow: 0;
+    margin-left: 10pt;
+}

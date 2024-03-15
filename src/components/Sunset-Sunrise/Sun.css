@@ -1,11 +1,8 @@
-.Wrapper{
-    right: 10rem;
+.Wrapper_sun{
+    right: 5rem;
     display: flex;
     justify-content: flex-start;
 
-    position: absolute;
-    top: 5vh;
-    margin-right: 5pt;
 }
 .Wrapper-left {
     width: 80px;
