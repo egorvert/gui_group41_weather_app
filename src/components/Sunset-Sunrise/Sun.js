@@ -3,7 +3,7 @@ import './Sun.css'
 import sunriseimg from '../../assets/icons/ui/sunrise.png'
 import sunsetimg from '../../assets/icons/ui/sunset.png'
 import { useState, useEffect } from 'react';
-import moment from 'moment';
+import moment from 'moment';    
 
 function Sun() {
 
@@ -29,7 +29,7 @@ function Sun() {
     
     return(
         
-        <div className='Wrapper'>
+        <div className='Wrapper_sun'>
             
             <div className='Wrapper-left'>
                 <div className='Top'>
@@ -47,7 +47,6 @@ function Sun() {
                     {sunset}
                 </div>
             </div>
-            {/* {suntime} */}
         </div>
     )
 }
