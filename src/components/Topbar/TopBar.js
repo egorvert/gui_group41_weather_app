@@ -2,28 +2,20 @@ import React from 'react'
 import SearchBar from '../searchBar/SearchBar';
 import Sun from '../Sunset-Sunrise/Sun';
 import './TopBar.css'
-import {useState, useEffect} from 'react';
 
 
 
-function TopBar(){
+function TopBar({lonlat}){
 
-    const [location, setlocation] = useState()
-
-    useEffect(() => {
-        const updatelocation = async () => {
-            setlocation()
-        };
-    }, [])
-
-
+    
+    lonlat = lonlat
     return(
-        <div className='Wrapper'>
+        <div className='Wrapper_Top'>
             <div className='Search'>
-                <SearchBar/>
+                <SearchBar lonlat={lonlat}/>
             </div>
             <div className='Sun'>
-                <Sun/>
+                <Sun lonlat={lonlat}/>
             </div>
             
         </div>
