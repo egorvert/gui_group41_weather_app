@@ -26,7 +26,7 @@ function MainWidget({lonlat}) {
     else{
         url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
     }
-
+    //
     useEffect(() => {
       // console.log('44')
       const fetchData = async () => {
