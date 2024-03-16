@@ -2,7 +2,7 @@ import './App.css';
 import'../style/Style.css';
 import '../components/mainWidget/MainWidget';
 import MainWidget from '../components/mainWidget/MainWidget';
-import TopBar from '../components/Topbar/TopBar';
+// import TopBar from '../components/Topbar/TopBar';
 import {useState, useEffect} from 'react';
 import '../components/Topbar/TopBar.css';
 import '../components/searchBar/SearchBar.css';
@@ -37,12 +37,7 @@ function App() {
     setCity(event.target.value);
     console.log('set')
   };
-  const handleKeyDown = (event) => {
-    if ((event.key === 'Enter')) {
-      setCity(event.target.value);
-      console.log('set')
-    }
-  }
+
   const lonlat = [locationlat, locationlon, city]
   return (
     <div className="App">
@@ -59,7 +54,7 @@ function App() {
             <Sun lonlat={lonlat}/>
           </div>
       </div>
-      <MainWidget />
+      <MainWidget lonlat={lonlat}/>
       <Bottom />
     </div>
   );
