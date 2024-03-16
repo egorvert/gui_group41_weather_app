@@ -9,25 +9,38 @@ import partlycloudyimg from '../../assets/icons/ui/partlycloudyWeather.png'
 import snowyimg from '../../assets/icons/ui/snowyWeather.png'
 
 function PreviousWeatherWidget() {
-    // Placeholder 
+    function getPreviousDays() {
+        const today = new Date();
+        const previousDays = [];
+
+        for (let i = 1; i <= 3; i++) {
+            const previousDay = new Date(today);
+            previousDay.setDate(today.getDate() - i);
+            previousDays.push(previousDay.toISOString().split('T')[0]); 
+        }
+
+        return previousDays;
+    }
+
     const previousWeather = [
-        { date: '2024-03-14', temperature: '15°C', condition: 'Windy' },
-        { date: '2024-03-13', temperature: '13°C', condition: 'Light Rain' },
-        { date: '2024-03-12', temperature: '12°C', condition: 'Heavy Rain' }
+        { date: getPreviousDays()[0], rainfall: '0 mm', condition: 'Windy' },
+        { date: getPreviousDays()[1], rainfall: '6 mm', condition: 'Light Rain' },
+        { date: getPreviousDays()[2], rainfall: '16 mm', condition: 'Heavy Rain' }
     ];
 
     return (
-        <div className="previous-weather-widget">
-            <h2>Previous Day's Weather</h2>
-            <ul>
+        <div className="side-widget">
+            <h2 className ="side-widget-heading">Previous Day's Weather</h2>
+            <div className ="previous-day-img"></div>
+            <div className="previous-day-container">
                 {previousWeather.map((dayWeather, index) => (
-                    <li key={index}>
-                        <div>Date: {dayWeather.date}</div>
-                        <div>Temperature: {dayWeather.temperature}</div>
+                     <div key={index} className="previous-day-layout">
+                        <div>{dayWeather.date}</div>
+                        <div>Rainfall: {dayWeather.rainfall}</div>
                         <div>Condition: {dayWeather.condition}</div>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
