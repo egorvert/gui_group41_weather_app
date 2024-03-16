@@ -15,12 +15,9 @@ function Sun({lonlat}) {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${apikey}`
     const [sunrise, setSunrise] = useState()
     const [sunset, setSunset] = useState()
-    console.log(city)
     
     if (typeof locationlat === "number"){
         url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${apikey}`
-        // url_backup = url
-        console.log('3')
     }
     else{
         url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
@@ -33,17 +30,11 @@ function Sun({lonlat}) {
         const fetchData = async () => {
                  let result = await fetch(url)
                  if ((result.status === 404) || (result.status === 400)){
-                    console.log('Bad City Name')
                     result = await fetch(url_backup)
-                    console.log(url_backup)
                 }
-                console.log('heee')
-                console.log(result)
                 result.json().then(json => {
-                    console.log("H")
                     setSunrise(moment(json.sys.sunrise*1000).format('HH:mm'))
                     setSunset(moment(json.sys.sunset*1000).format('HH:mm'))
-                    console.log(sunrise + '////' )
                 })  
 
 
@@ -52,7 +43,6 @@ function Sun({lonlat}) {
 
         fetchData();
     })
-    console.log('1')
     
     return(
         
