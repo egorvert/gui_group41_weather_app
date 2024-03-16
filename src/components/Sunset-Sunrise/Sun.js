@@ -8,22 +8,22 @@ import moment from 'moment';
 function Sun({lonlat}) {
     
     let url_backup = ""
-    const sunrise_apikey = "6e64a78c03e21e2143da3ea13650b0de"
+    const apikey = "6e64a78c03e21e2143da3ea13650b0de"
     const locationlat = lonlat[0]
     const locationlon = lonlat[1]
     let city = lonlat[2]
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${sunrise_apikey}`
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${apikey}`
     const [sunrise, setSunrise] = useState()
     const [sunset, setSunset] = useState()
     console.log(city)
     
     if (typeof locationlat === "number"){
-        url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${sunrise_apikey}`
+        url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${apikey}`
         // url_backup = url
         console.log('3')
     }
     else{
-        url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${sunrise_apikey}`
+        url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
     }
 
     

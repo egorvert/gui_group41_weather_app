@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './SearchBar.css'
-import Sun from '../Sunset-Sunrise/Sun'
+// import Sun from '../Sunset-Sunrise/Sun'
 
 function SearchBar({lonlat}){
-    let city = ''
+    // let city = ''
     console.log(lonlat[2])
     console.log(lonlat[1] + '  ////  ')
     const [location, setLocation] =useState()
