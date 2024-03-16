@@ -18,7 +18,7 @@ function MainWidget({lonlat}) {
     const [feelslike, setFeelslike] = useState('')
     const [high, setHigh] =useState('')
     const [low, setLow] = useState('')
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${apikey}`
     if (typeof locationlat === "number"){
       url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${apikey}`
 
@@ -26,26 +26,31 @@ function MainWidget({lonlat}) {
     else{
         url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
     }
-    //
     useEffect(() => {
-      // console.log('44')
+      console.log('44')
       const fetchData = async () => {
         let result = await fetch(url)
+        let badstatus = false
              if ((result.status === 404) || (result.status === 400)){
                 console.log('Bad City Name')
-                // url = url_backup
+                badstatus = true
                 result = await fetch(url_backup)
                 console.log("hhhhhhhhhh " +url + '\n' + url_backup)
                 // setCity('London')
             }
-            if(url === url_backup){}
-            // else{setCity(city)}
             result.json().then(json => {
                 setTemp(Math.floor(json.main.temp))
                 setFeelslike(Math.floor(json.main.feels_like))
                 setHumidity(Math.floor(json.main.humidity))
                 setLow(Math.floor(json.main.temp_min))
                 setHigh(Math.floor(json.main.temp_max))
+                if(badstatus === false){
+                  setCity(city)
+                }
+                else{
+                  setCity('London')
+                }
+                console.log('called')
             })  
 
 
