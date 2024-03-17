@@ -35,7 +35,6 @@ function App() {
   getLocation()
   const onChangeHandler = event => {
     setCity(event.target.value);
-    console.log('set')
   };
 
   const lonlat = [locationlat, locationlon, city]
@@ -55,7 +54,7 @@ function App() {
           </div>
       </div>
       <MainWidget lonlat={lonlat}/>
-      <Bottom />
+      <Bottom lonlat={lonlat}/>
     </div>
   );
 }

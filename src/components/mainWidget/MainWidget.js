@@ -27,15 +27,12 @@ function MainWidget({lonlat}) {
         url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
     }
     useEffect(() => {
-      console.log('44')
       const fetchData = async () => {
         let result = await fetch(url)
         let badstatus = false
              if ((result.status === 404) || (result.status === 400)){
-                console.log('Bad City Name')
                 badstatus = true
                 result = await fetch(url_backup)
-                console.log("hhhhhhhhhh " +url + '\n' + url_backup)
                 // setCity('London')
             }
             result.json().then(json => {
@@ -50,7 +47,6 @@ function MainWidget({lonlat}) {
                 else{
                   setCity('London')
                 }
-                console.log('called')
             })  
 
 
