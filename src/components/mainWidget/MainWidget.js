@@ -5,56 +5,76 @@ import GreenTick from '../../assets/icons/ui/greenTick.svg'
 import LargeSun from '../../assets/icons/weather/sunLarge.svg'
 import { useState, useEffect } from 'react';
 
-function MainWidget({lonlat}) {
-  // let url_backup = ""
-    // const apikey = "6e64a78c03e21e2143da3ea13650b0de"
-    // const locationlat = lonlat[0]
-    // const locationlon = lonlat[1]
-    // const city = lonlat[2]
-    // const [citydisplay, setCity] = useState('London')
-    
-    const [temp, setTemp] = useState('')
-    const [humidity, setHumidity] = useState('')
-    const [feelslike, setFeelslike] = useState('')
-    const [high, setHigh] =useState('')
-    const [low, setLow] = useState('')
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${apikey}`
-    // if (typeof locationlat === "number"){
-    //   url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${apikey}`
+function MainWidget({mainWidgetinfo}) {
+  // console.log(mainWidgetinfo + '////////////')
+  let temp = ''
+  let feelslike = ''
+  let humidity = ''
+  let low = ''
+  let high = ''
+  let citydisplay= ''
+  // console.log(mainWidgetinfo)
+  if (mainWidgetinfo === undefined){
+ }
+  else{
+    // console.log('good' +mainWidgetinfo)
+    temp = mainWidgetinfo[0]
+     feelslike = mainWidgetinfo[1]
+     humidity = mainWidgetinfo[2]
+     low = mainWidgetinfo[3]
+     high = mainWidgetinfo[4]
+     citydisplay= mainWidgetinfo[5]
+  }
 
-    // }
-    // else{
-    //     url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
-    // }
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     let result = await fetch(url)
-    //     let badstatus = false
-    //          if ((result.status === 404) || (result.status === 400)){
-    //             badstatus = true
-    //             result = await fetch(url_backup)
-    //             // setCity('London')
-    //         }
-    //         result.json().then(json => {
-    //             setTemp(Math.floor(json.main.temp))
-    //             setFeelslike(Math.floor(json.main.feels_like))
-    //             setHumidity(Math.floor(json.main.humidity))
-    //             setLow(Math.floor(json.main.temp_min))
-    //             setHigh(Math.floor(json.main.temp_max))
-    //             if(badstatus === false){
-    //               setCity(city)
-    //             }
-    //             else{
-    //               setCity('London')
-    //             }
-    //         })  
+  // let url_backup = ""
+  //   const apikey = "6e64a78c03e21e2143da3ea13650b0de"
+  //   const locationlat = lonlat[0]
+  //   const locationlon = lonlat[1]
+  //   const city = lonlat[2]
+  //   const [citydisplay, setCity] = useState('London')
+    
+  //   const [temp, setTemp] = useState('')
+  //   const [humidity, setHumidity] = useState('')
+  //   const [feelslike, setFeelslike] = useState('')
+  //   const [high, setHigh] =useState('')
+  //   const [low, setLow] = useState('')
+  //   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${apikey}`
+  //   if (typeof locationlat === "number"){
+  //     url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${apikey}`
+
+  //   }
+  //   else{
+  //       url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
+  //   }
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       let result = await fetch(url)
+      //   let badstatus = false
+      //        if ((result.status === 404) || (result.status === 400)){
+      //           badstatus = true
+      //           result = await fetch(url_backup)
+      //           // setCity('London')
+      //       }
+      //       result.json().then(json => {
+      //           setTemp(Math.floor(json.main.temp))
+      //           setFeelslike(Math.floor(json.main.feels_like))
+      //           setHumidity(Math.floor(json.main.humidity))
+      //           setLow(Math.floor(json.main.temp_min))
+      //           setHigh(Math.floor(json.main.temp_max))
+      //           if(badstatus === false){
+      //             setCity(city)
+      //           }
+      //           else{
+      //             setCity('London')
+      //           }
+      //       })  
 
 
         
-    //     }
+      //   }
 
-    //   fetchData();
-    // })
+      // fetchData();
+  //   })
 
   // const [Location, SetLocation] = useState("London")
   return (

@@ -1,12 +1,12 @@
 import React from 'react';
 import './sidePrevious.css'
-import windyimg from '../../assets/icons/ui/windyWeather.png'
-import sunnyimg from '../../assets/icons/ui/sunnyWeather.png'
-import stormyimg from '../../assets/icons/ui/stormyWeather.png'
-import lrainimg from '../../assets/icons/ui/lrainWeather.png'
-import hrainimg from '../../assets/icons/ui/hrainWeather.png'
-import partlycloudyimg from '../../assets/icons/ui/partlycloudyWeather.png'
-import snowyimg from '../../assets/icons/ui/snowyWeather.png'
+// import windyimg from '../../assets/icons/ui/windyWeather.png'
+// import sunnyimg from '../../assets/icons/ui/sunnyWeather.png'
+// import stormyimg from '../../assets/icons/ui/stormyWeather.png'
+// import lrainimg from '../../assets/icons/ui/lrainWeather.png'
+// import hrainimg from '../../assets/icons/ui/hrainWeather.png'
+// import partlycloudyimg from '../../assets/icons/ui/partlycloudyWeather.png'
+// import snowyimg from '../../assets/icons/ui/snowyWeather.png'
 
 function PreviousWeatherWidget() {
     function getPreviousDays() {
