@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 import moment from 'moment'; 
 
 function Bottom({bottomdata}){
-    // let url_backup = ""
-    // const apikey = "6e64a78c03e21e2143da3ea13650b0de"
-    // const [locationlat, setLocationlat] = useState()
-    // const [locationlon, setLocationlon] = useState()
+    let url_backup = ""
+    const apikey = "6e64a78c03e21e2143da3ea13650b0de"
+    const [locationlat, setLocationlat] = useState(bottomdata[0])
+    const [locationlon, setLocationlon] = useState(bottomdata[1])
     // useEffect(() =>{
     //     const setcoords = async () =>{
     //         setLocationlat(lonlat[0])
@@ -39,16 +39,14 @@ function Bottom({bottomdata}){
     // }
     
     // console.log(bottomlocation)
-    // let url = `https://api.openweathermap.org/data/3.0/onecall?lat=${locationlat}&lon=${locationlon}&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
-    // url_backup = `https://api.openweathermap.org/data/3.0/onecall?lat=51.5&lon=0.12&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
+    let url = `https://api.openweathermap.org/data/3.0/onecall?lat=${locationlat}&lon=${locationlon}&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
+    url_backup = `https://api.openweathermap.org/data/3.0/onecall?lat=51.5&lon=0.12&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
     // let coordsurl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apikey}`
 
-    // for (let i =0; i<bottomdata.length; i++){
-        
-    // }
-    const [nowtemp, setNowtemp] = useState()
-    const [nowhumidity, setNowhumidity] = useState()
-    const [plus1, setPlus1] = useState('plus 1 hour')
+    console.log(bottomdata + 'hehehehadjhfakjdfhalkdsjfhaksjdfhaksjdfhasdkj')
+    const [nowtemp, setNowtemp] = useState(bottomdata[0])
+    const [nowhumidity, setNowhumidity] = useState(bottomdata[1])
+    const [plus1, setPlus1] = useState(bottomdata[2])
     const [plus1temp, setPlus1temp] = useState()
     const [plus1humidity, setPlus1humidity] = useState()
     const [plus2, setPlus2] = useState('plus 2 hour')
@@ -75,8 +73,9 @@ function Bottom({bottomdata}){
     const [plus9, setPlus9] = useState('plus 9 hour')
     const [plus9temp, setPlus9temp] = useState()
     const [plus9humidity, setPlus9humidity] = useState()
-    useEffect(() => {
-        const fetchData = async () => {
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         console.log(bottomdata[0])
     //              let result = await fetch(url)
     //              if ((result.status === 404) || (result.status === 400)){
     //                 result = await fetch(url_backup)
@@ -87,61 +86,60 @@ function Bottom({bottomdata}){
     //                 console.log(locationlat + 'llllllllllllll')
     //                 console.log(locationlon)
     //                 console.log(json)
-                    setNowtemp(bottomdata[0])
-                    setNowhumidity(bottomdata[1])
+    //                 setNowtemp(Math.floor(json.hourly[0].temp) + '°C')
+    //                 setNowhumidity(Math.floor(json.hourly[0].humidity) + '%')
 
-                    setPlus1(bottomdata[2])
-                    setPlus1temp(bottomdata[3])
-                    setPlus1humidity(bottomdata[4])
+    //                 setPlus1(moment(json.hourly[1].dt*1000).format('HH:mm'))
+    //                 setPlus1temp(Math.floor(json.hourly[1].temp) + '°C')
+    //                 setPlus1humidity(Math.floor(json.hourly[1].humidity) + '%')
 
-                    setPlus2(bottomdata[5])
-                    setPlus2temp(bottomdata[6])
-                    setPlus2humidity(bottomdata[7])
+    //                 setPlus2(moment(json.hourly[2].dt*1000).format('HH:mm'))
+    //                 setPlus2temp(Math.floor(json.hourly[2].temp) + '°C')
+    //                 setPlus2humidity(Math.floor(json.hourly[2].humidity) + '%')
 
-                    setPlus3(bottomdata[8])
-                    setPlus3temp(bottomdata[9])
-                    setPlus3humidity(bottomdata[10])
+    //                 setPlus3(moment(json.hourly[3].dt*1000).format('HH:mm'))
+    //                 setPlus3temp(Math.floor(json.hourly[3].temp) + '°C')
+    //                 setPlus3humidity(Math.floor(json.hourly[3].humidity) + '%')
 
-                    setPlus4(bottomdata[11])
-                    setPlus4temp(bottomdata[12])
-                    setPlus4humidity(bottomdata[13])
+    //                 setPlus4(moment(json.hourly[4].dt*1000).format('HH:mm'))
+    //                 setPlus4temp(Math.floor(json.hourly[4].temp) + '°C')
+    //                 setPlus4humidity(Math.floor(json.hourly[4].humidity) + '%')
 
-                    setPlus5(bottomdata[14])
-                    setPlus5temp(bottomdata[15])
-                    setPlus5humidity(bottomdata[16])
+    //                 setPlus5(moment(json.hourly[5].dt*1000).format('HH:mm'))
+    //                 setPlus5temp(Math.floor(json.hourly[5].temp) + '°C')
+    //                 setPlus5humidity(Math.floor(json.hourly[5].humidity) + '%')
 
-                    setPlus6(bottomdata[17])
-                    setPlus6temp(bottomdata[18])
-                    setPlus6humidity(bottomdata[19])
+    //                 setPlus6(moment(json.hourly[6].dt*1000).format('HH:mm'))
+    //                 setPlus6temp(Math.floor(json.hourly[6].temp) + '°C')
+    //                 setPlus6humidity(Math.floor(json.hourly[6].humidity) + '%')
 
-                    setPlus7(bottomdata[20])
-                    setPlus7temp(bottomdata[21])
-                    setPlus7humidity(bottomdata[22])
+    //                 setPlus7(moment(json.hourly[7].dt*1000).format('HH:mm'))
+    //                 setPlus7temp(Math.floor(json.hourly[7].temp) + '°C')
+    //                 setPlus7humidity(Math.floor(json.hourly[7].humidity) + '%')
 
-                    setPlus8(bottomdata[23])
-                    setPlus8temp(bottomdata[24])
-                    setPlus8humidity(bottomdata[25])
+    //                 setPlus8(moment(json.hourly[8].dt*1000).format('HH:mm'))
+    //                 setPlus8temp(Math.floor(json.hourly[8].temp) + '°C')
+    //                 setPlus8humidity(Math.floor(json.hourly[8].humidity) + '%')
                     
-                    setPlus9(bottomdata[26])
-                    setPlus9temp(bottomdata[27])
-                    setPlus9humidity(bottomdata[28])
-        }
+    //                 setPlus9(moment(json.hourly[9].dt*1000).format('HH:mm'))
+    //                 setPlus9temp(Math.floor(json.hourly[9].temp) + '°C')
+    //                 setPlus9humidity(Math.floor(json.hourly[9].humidity) + '%')
+    //             })  
 
 
             
-        
+    //     }
 
-        fetchData();
-    },[])
-    console.log("hhhh" +bottomdata+plus1temp)
+    //     fetchData();
+    // },[])
     return(
         <div className="Wrapper_Bottom">
             <div className="hourly">
                 <div className="temp">
-                    {nowtemp}
+                    {bottomdata[0]}
                 </div>
                 <div className="humidity">
-                    {nowhumidity}
+                    {bottomdata[1]}
                 </div>
                 <div className="img_condition">
 
@@ -152,128 +150,128 @@ function Bottom({bottomdata}){
             </div>
             <div className="hourly">
             <div className="temp">
+                    {bottomdata[3]}
+                </div>
+                <div className="humidity">
+                    {bottomdata[4]}
+                </div>
+                <div className="img_condition">
+
+                </div>
+                <div className="time">
                     {bottomdata[2]}
                 </div>
+            </div>
+            <div className="hourly">
+            <div className="temp">
+                    {bottomdata[6]}
+                </div>
                 <div className="humidity">
-                    {plus1humidity}
+                    {bottomdata[7]}
                 </div>
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus1}
+                    {bottomdata[5]}
                 </div>
             </div>
             <div className="hourly">
             <div className="temp">
-                    {plus2temp}
+                    {bottomdata[9]}
                 </div>
                 <div className="humidity">
-                    {plus2humidity}
+                    {bottomdata[10]}
                 </div>
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus2}
+                    {bottomdata[8]}
                 </div>
             </div>
             <div className="hourly">
             <div className="temp">
-                    {plus3temp}
+                    {bottomdata[12]}
                 </div>
                 <div className="humidity">
-                    {plus3humidity}
-                </div>
-                <div className="img_condition">
-
-                </div>
-                <div className="time">
-                    {plus3}
-                </div>
-            </div>
-            <div className="hourly">
-            <div className="temp">
-                    {plus4temp}
-                </div>
-                <div className="humidity">
-                    {plus4humidity}
+                    {bottomdata[13]}
                 </div>  
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus4}
+                    {bottomdata[11]}
                 </div>
             </div>
             <div className="hourly">
             <div className="temp">
-                    {plus5temp}
+                    {bottomdata[15]}
                 </div>
                 <div className="humidity">
-                    {plus5humidity}
+                    {bottomdata[16]}
                 </div>
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus5}
+                    {bottomdata[14]}
                 </div>
             </div>
             <div className="hourly">
             <div className="temp">
-                    {plus6temp}
+                    {bottomdata[18]}
                 </div>
                 <div className="humidity">
-                    {plus6humidity}
+                    {bottomdata[19]}
                 </div>
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus6}
+                    {bottomdata[17]}
                 </div>
             </div>
             <div className="hourly">
             <div className="temp">
-                    {plus7temp}
+                    {bottomdata[21]}
                 </div>
                 <div className="humidity">
-                    {plus7humidity}
+                    {bottomdata[22]}
                 </div>
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus7}
+                    {bottomdata[20]}
                 </div>
             </div>
             <div className="hourly">
             <div className="temp">
-                    {plus8temp}
+                    {bottomdata[24]}
                 </div>
                 <div className="humidity">
-                    {plus8humidity}
+                    {bottomdata[25]}
                 </div>
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus8}
+                    {bottomdata[23]}
                 </div>
             </div>
             <div className="hourly">
             <div className="temp">
-                    {plus9temp}
+                    {bottomdata[27]}
                 </div>
                 <div className="humidity">
-                    {plus9humidity}
+                    {bottomdata[28]}
                 </div>
                 <div className="img_condition">
 
                 </div>
                 <div className="time">
-                    {plus9}
+                    {bottomdata[26]}
                 </div>
             </div>
         </div>
