@@ -3,35 +3,45 @@ import './Bottom.css';
 import { useState, useEffect } from 'react';
 import moment from 'moment'; 
 
-function Bottom({lonlat}){
+function Bottom({bottomlocation}){
     let url_backup = ""
     const apikey = "6e64a78c03e21e2143da3ea13650b0de"
-    const [locationlat, setLocationlat] = useState()
-    const [locationlon, setLocationlon] = useState()
-    useEffect(() =>{
-        const setcoords = async () =>{
-            setLocationlat(lonlat[0])
-            setLocationlat(lonlat[1])
-            let result = await fetch(coordsurl)
-            if ((result.status === 404) || (result.status === 400)){
-                console.log('iiiii')
-            }
-            else{
-                result.json().then(json => {
-                    setLocationlat(json[0].lat)
-                    setLocationlon(json[0].lon)
-                    console.log(locationlat + ' jjjjjjj' + json[0].lat)
+    // const [locationlat, setLocationlat] = useState()
+    // const [locationlon, setLocationlon] = useState()
+    // useEffect(() =>{
+    //     const setcoords = async () =>{
+    //         setLocationlat(lonlat[0])
+    //         setLocationlat(lonlat[1])
+    //         let result = await fetch(coordsurl)
+    //         if ((result.status === 404) || (result.status === 400)){
+    //             console.log('iiiii')
+    //         }
+    //         else{
+    //             result.json().then(json => {
+    //                 setLocationlat(json[0].lat)
+    //                 setLocationlon(json[0].lon)
+    //                 console.log(locationlat + ' jjjjjjj' + json[0].lat)
 
-                })
-            }
-        }
-        setcoords();
-    },[])
-    console.log(locationlat)
-    const city = lonlat[2]
+    //             })
+    //         }
+    //     }
+    //     setcoords();
+    // },[])
+    // console.log(locationlat)
+    // const city = lonlat[2]
+    let locationlat = 51.5
+    let locationlon = 0.12
+    if(bottomlocation[0] instanceof Object){
+    }
+    else{
+        locationlat = bottomlocation[0]
+        locationlon = bottomlocation[1]
+    }
+    
+    console.log(bottomlocation)
     let url = `https://api.openweathermap.org/data/3.0/onecall?lat=${locationlat}&lon=${locationlon}&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
     url_backup = `https://api.openweathermap.org/data/3.0/onecall?lat=51.5&lon=0.12&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
-    let coordsurl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apikey}`
+    // let coordsurl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apikey}`
 
     
     const [nowtemp, setNowtemp] = useState()
@@ -66,12 +76,15 @@ function Bottom({lonlat}){
     useEffect(() => {
         const fetchData = async () => {
                  let result = await fetch(url)
-                 if ((result.status !== 404) || (result.status !== 400)){
+                 if ((result.status === 404) || (result.status === 400)){
                     result = await fetch(url_backup)
+                    console.log('whyyyyyyyy')
                 }
                 
                 result.json().then(json => {
-                    // console.log(locationlat + 'llllllllllllll')
+                    console.log(locationlat + 'llllllllllllll')
+                    console.log(locationlon)
+                    console.log(json)
                     setNowtemp(Math.floor(json.hourly[0].temp) + '°C')
                     setNowhumidity(Math.floor(json.hourly[0].humidity) + '%')
 
