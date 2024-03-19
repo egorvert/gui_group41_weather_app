@@ -25,6 +25,7 @@ function Bottom({bottomdata}){
     let iconplus7 = bottomdata[36]
     let iconplus8 = bottomdata[37]
     let iconplus9 = bottomdata[38]
+    console.log(bottomdata)
     const [nowimg, setnowimg] =useState(clear)
     const [plus1img, setplus1img] = useState(clear)
     const [plus2img, setplus2img] = useState(clear)
@@ -37,14 +38,14 @@ function Bottom({bottomdata}){
     const [plus9img, setplus9img] = useState(clear)
     useEffect(() =>{
         function set_icons(){
-        if (( iconnow === '0dn')){
+        if (( iconnow === '01dn')){
             setnowimg(clear)
           }
           else if((iconnow === '01n')){
             setnowimg(night)
           }
           else if((iconnow === '02d') || (iconnow === '02n') || (iconnow === '03d') || (iconnow === '03n') || (iconnow === '04d') || (iconnow === '04n')){
-            console.log('heheh')
+            console.log('change now //// '    + iconnow )
             setnowimg(cloudy)
           }
           else if((iconnow === '09d') || (iconnow === '09n')){
@@ -62,14 +63,14 @@ function Bottom({bottomdata}){
           else if((iconnow === '50d') || (iconnow === '50n')){
             setnowimg(fog)
           }
-          if (( iconplus2 === '0dn')){
+          if (( iconplus2 === '01d')){
             setplus2img(clear)
           }
           else if((iconplus2 === '01n')){
             setplus2img(night)
           }
           else if((iconplus2 === '02d') || (iconplus2 === '02n') || (iconplus2 === '03d') || (iconplus2 === '03n') || (iconplus2 === '04d') || (iconplus2 === '04n')){
-            console.log('heheh')
+            console.log('change 2 //// '    + iconplus2 )
             setplus2img(cloudy)
           }
           else if((iconplus2 === '09d') || (iconplus2 === '09n')){
@@ -87,14 +88,14 @@ function Bottom({bottomdata}){
           else if((iconplus2 === '50d') || (iconplus2 === '50n')){
             setplus2img(fog)
           }
-          if (( iconplus3 === '0dn')){
+          if (( iconplus3 === '01d')){
             setplus3img(clear)
           }
           else if((iconplus3 === '01n')){
             setplus3img(night)
           }
           else if((iconplus3 === '02d') || (iconplus3 === '02n') || (iconplus3 === '03d') || (iconplus3 === '03n') || (iconplus3 === '04d') || (iconplus3 === '04n')){
-            console.log('heheh')
+            console.log('change 3 //// '    + iconplus3 )
             setplus3img(cloudy)
           }
           else if((iconplus3 === '09d') || (iconplus3 === '09n')){
@@ -112,14 +113,14 @@ function Bottom({bottomdata}){
           else if((iconplus3 === '50d') || (iconplus3 === '50n')){
             setplus3img(fog)
           }
-          if (( iconplus4 === '0dn')){
+          if (( iconplus4 === '01d')){
             setplus4img(clear)
           }
           else if((iconplus4 === '01n')){
             setplus4img(night)
           }
           else if((iconplus4 === '02d') || (iconplus4 === '02n') || (iconplus4 === '03d') || (iconplus4 === '03n') || (iconplus4 === '04d') || (iconplus4 === '04n')){
-            console.log('heheh')
+            console.log('change 4 //// '    + iconplus4 )
             setplus4img(cloudy)
           }
           else if((iconplus4 === '09d') || (iconplus4 === '09n')){
@@ -137,14 +138,14 @@ function Bottom({bottomdata}){
           else if((iconplus4 === '50d') || (iconplus4 === '50n')){
             setplus4img(fog)
           }
-          if (( iconplus5 === '0dn')){
+          if (( iconplus5 === '01d')){
             setplus5img(clear)
           }
           else if((iconplus5 === '01n')){
             setplus5img(night)
           }
           else if((iconplus5 === '02d') || (iconplus5 === '02n') || (iconplus5 === '03d') || (iconplus5 === '03n') || (iconplus5 === '04d') || (iconplus5 === '04n')){
-            console.log('heheh')
+            // console.log('change 5 //// '    + iconplus5 )
             setplus5img(cloudy)
           }
           else if((iconplus5 === '09d') || (iconplus5 === '09n')){
@@ -162,7 +163,7 @@ function Bottom({bottomdata}){
           else if((iconplus5 === '50d') || (iconplus5 === '50n')){
             setplus5img(fog)
           }
-          if (( iconplus6 === '0dn')){
+          if (( iconplus6 === '01d')){
             setplus6img(clear)
           }
           else if((iconplus6 === '01n')){
@@ -187,7 +188,7 @@ function Bottom({bottomdata}){
           else if((iconplus6 === '50d') || (iconplus6 === '50n')){
             setplus6img(fog)
           }
-          if (( iconplus7 === '0dn')){
+          if (( iconplus7 === '01d')){
             setplus7img(clear)
           }
           else if((iconplus7 === '01n')){
@@ -212,7 +213,7 @@ function Bottom({bottomdata}){
           else if((iconplus7 === '50d') || (iconplus7 === '50n')){
             setplus7img(fog)
           }
-          if (( iconplus8 === '0dn')){
+          if (( iconplus8 === '01d')){
             setplus8img(clear)
           }
           else if((iconplus8 === '01n')){
@@ -237,7 +238,7 @@ function Bottom({bottomdata}){
           else if((iconplus8 === '50d') || (iconplus8 === '50n')){
             setplus8img(fog)
           }
-          if (( iconplus9 === '0dn')){
+          if (( iconplus9 === '01d')){
             setplus9img(clear)
           }
           else if((iconplus9 === '01n')){
@@ -262,7 +263,7 @@ function Bottom({bottomdata}){
           else if((iconplus9 === '50d') || (iconplus9 === '50n')){
             setplus9img(fog)
           }
-          if (( iconplus1 === '0dn')){
+          if (( iconplus1 === '01d')){
             setplus1img(clear)
           }
           else if((iconplus1 === '01n')){

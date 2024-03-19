@@ -108,7 +108,7 @@ function App() {
   const [low, setLow] = useState('')
   // console.log(threedaysago.toString())
   
-  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylon},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=FLTVUZY62E39QKWE5SY7YW7GS&contentType=json`
+  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylat},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=FLTVUZY62E39QKWE5SY7YW7GS&contentType=json`
     const setcoords = async () => {
       
       if ((city === '')) {
@@ -234,28 +234,33 @@ function App() {
 
     const fetchPreviousDaysData = async () =>{
       let yesterdayresult = await fetch(previousurl)
-             if ((yesterdayresult.status === 404) || (yesterdayresult.status === 400)){
+             if ((yesterdayresult.status === 404) || (yesterdayresult.status === 400) || (yesterdayresult.status === 429)){
                 // yeste = await fetch(url_backup)
                 console.log('whyyyyyyyy')
+                setyesterdaytemp('api error')
             }
-            
-            yesterdayresult.json().then(json => {
-                setyesterdaytemp(Math.floor(json.days[2].temp))
-                setyesterdayrain(Math.floor(json.days[2].precip))
-                setyesterdaycondition(json.days[2].conditions)
-                setyesterdayicon(json.days[2].icon)
+            else{
 
-                settwodaystemp(Math.floor(json.days[1].temp))
-                settwodaysrain(Math.floor(json.days[1].precip))
-                settwodayscondition(json.days[1].conditions)
-                settwodaysicon(json.days[1].icon)
+              yesterdayresult.json().then(json => {
+                  setyesterdaytemp(Math.floor(json.days[2].temp))
+                  setyesterdayrain(Math.floor(json.days[2].precip))
+                  setyesterdaycondition(json.days[2].conditions)
+                  setyesterdayicon(json.days[2].icon)
+  
+                  settwodaystemp(Math.floor(json.days[1].temp))
+                  settwodaysrain(Math.floor(json.days[1].precip))
+                  settwodayscondition(json.days[1].conditions)
+                  settwodaysicon(json.days[1].icon)
+                  
+                  console.log(json)
+                  setthreedaystemp(Math.floor(json.days[0].temp))
+                  setthreedaysrain(Math.floor(json.days[0].precip))
+                  setthreedayscondition(json.days[0].conditions)
+                  setthreedaysicon(json.days[0].icon)
+                })
                 
-                setthreedaystemp(Math.floor(json.days[0].temp))
-                setthreedaysrain(Math.floor(json.days[0].precip))
-                setthreedayscondition(json.days[0].conditions)
-                setthreedaysicon(json.days[0].icon)
+            }
 
-            })
 
 
     }
