@@ -4,9 +4,10 @@
     border-radius: 25px;
     background-color: rgba(246, 246, 246, 0.5);
 
-    box-shadow: 0 6px 60px 5px rgba(0, 0, 0, 0.75); 
+    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75);
+    box-shadow: inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
     backdrop-filter: blur(10px);
-
     color: #000;
 
     display: flex;
@@ -26,9 +27,9 @@
 }
 
 .previous-day-container {
-    text-align: center;
+    /* text-align: center;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: bold; */
     margin-top: 20px;
 }
 .previous-day-layout {
@@ -36,7 +37,7 @@
     border-bottom: 1px solid #ccc; 
     width: 80%; 
     max-width: 300px; 
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 10px;
 }
 
@@ -45,4 +46,9 @@
     height: auto; 
     margin-right: 10px; 
     border-radius: 50%;
+}
+.date, .Temp, .Rain, .Condition{
+    align-self: left;
+    font-size: 20px;
+    font-weight: 400;
 }

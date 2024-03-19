@@ -9,7 +9,6 @@ import '../components/Topbar/TopBar.css';
 import '../components/searchBar/SearchBar.css';
 import Sun from '../components/Sunset-Sunrise/Sun';
 import Bottom from '../components/Bottom/Bottom';
-import { wait } from '@testing-library/user-event/dist/utils';
 import PreviousWeatherWidget from '../components/sideBar/sidePrevious';
 
 function App() {
@@ -48,8 +47,26 @@ function App() {
     const [plus9, setPlus9] = useState('plus 9 hour')
     const [plus9temp, setPlus9temp] = useState('')
     const [plus9humidity, setPlus9humidity] = useState('')
-    const [bottomdata, setBottomdata] = useState([''])
-  
+    let bottomdata = [nowtemp, nowhumidity, plus1, plus1temp, plus1humidity, plus2, plus2temp, plus2humidity, plus3, plus3temp, plus3humidity, plus4, plus4temp, plus4humidity, plus5, plus5temp, plus5humidity, plus6, plus6temp, plus6humidity, plus7, plus7temp, plus7humidity, plus8, plus8temp, plus8humidity, plus9, plus9temp, plus9humidity]
+    
+    let threedaysago = moment().subtract(3, 'days').format('YYYY-MM-DD')
+    let twodaysago = moment().subtract(2, 'days').format('YYYY-MM-DD')
+    let yesterday = moment().subtract(1, 'days').format('YYYY-MM-DD')
+
+    const [yesterdaytemp, setyesterdaytemp] = useState('')
+    const [yesterdaycondition, setyesterdaycondition] = useState('')
+    const [yesterdayrain, setyesterdayrain] = useState('')
+    const [yesterdayicon, setyesterdayicon] = useState('')
+
+    const [twodaystemp, settwodaystemp] = useState('')
+    const [twodayscondition, settwodayscondition] = useState('')
+    const [twodaysrain, settwodaysrain] = useState('')
+    const [twodaysicon, settwodaysicon] = useState('')
+
+    const [threedaystemp, setthreedaystemp] = useState('')
+    const [threedayscondition, setthreedayscondition] = useState('')
+    const [threedaysrain, setthreedaysrain] = useState('')
+    const [threedaysicon, setthreedaysicon] = useState('')
   
   let coordsurl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apikey}`
   let url_backup = ""
@@ -61,7 +78,7 @@ function App() {
   const [sunrise, setSunrise] = useState()
   const [sunset, setSunset] = useState()
   let hoururl = `https://api.openweathermap.org/data/3.0/onecall?lat=${citylat}&lon=${citylon}&exclude=current,minutely,alerts&units=Metric&appid=${apikey}`
-  let hoururl_backup = `https://api.openweathermap.org/data/3.0/onecall?lat=51.5&lon=0.12&exclude=current,minutely,alerts&units=Metric&appid=${apikey}`
+  // let hoururl_backup = `https://api.openweathermap.org/data/3.0/onecall?lat=51.5&lon=0.12&exclude=current,minutely,alerts&units=Metric&appid=${apikey}`
 
   if (typeof locationlat === "number") {
     url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${apikey}`
@@ -75,9 +92,11 @@ function App() {
   const [feelslike, setFeelslike] = useState('')
   const [high, setHigh] = useState('')
   const [low, setLow] = useState('')
-
-
+  console.log(threedaysago.toString())
+  
+  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylon},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=HJ662UQ43MYUPLGLYSMPMU9KP&contentType=json`
     const setcoords = async () => {
+      
       if ((city === '')) {
 
       }
@@ -87,9 +106,13 @@ function App() {
         }
         else {
           result.json().then(json => {
+            console.log('api coords call')
             setCitylat(json[0].lat)
             setCitylon(json[0].lon)
+            fetchBottomData();
+            fetchPreviousDaysData();
           })
+          
         }
       }
     }
@@ -105,7 +128,6 @@ function App() {
       const longitude = position.coords.longitude;
       setLocationlat(latitude)
       setLocationlon(longitude)
-      // fetchBottomData();
     }
 
     function error() {
@@ -119,12 +141,13 @@ function App() {
       setCity(event.target.value);
       setcoords()
       fetchBottomData();
-      console.log(city)
+      console.log(citylon)
     }
     else {
       if (event.keyCode === 8) {
         if ((event.target.value.length === 1) || (event.target.value.length===0)) {
           setCity('')
+          
         }
       }
       else {
@@ -132,79 +155,113 @@ function App() {
       }
     }
   };
+  // useEffect(() => {
+    const fetchBottomData = async () => {
+             let bottomresult = await fetch(hoururl)
+             if ((bottomresult.status === 404) || (bottomresult.status === 400)){
+                bottomresult = await fetch(url_backup)
+                console.log('whyyyyyyyy')
+            }
+            
+            bottomresult.json().then(json => {
+                console.log(city + 'llllllllllllll')
+                console.log(citylat + ''+ citylon)
+                console.log('api call hourly')
+                setNowtemp(Math.floor(json.hourly[0].temp) + '°C')
+                setNowhumidity(Math.floor(json.hourly[0].humidity) + '%')
 
+                setPlus1(moment(json.hourly[1].dt*1000).format('HH:mm'))
+                setPlus1temp(Math.floor(json.hourly[1].temp) + '°C')
+                setPlus1humidity(Math.floor(json.hourly[1].humidity) + '%')
+
+                setPlus2(moment(json.hourly[2].dt*1000).format('HH:mm'))
+                setPlus2temp(Math.floor(json.hourly[2].temp) + '°C')
+                setPlus2humidity(Math.floor(json.hourly[2].humidity) + '%')
+
+                setPlus3(moment(json.hourly[3].dt*1000).format('HH:mm'))
+                setPlus3temp(Math.floor(json.hourly[3].temp) + '°C')
+                setPlus3humidity(Math.floor(json.hourly[3].humidity) + '%')
+
+                setPlus4(moment(json.hourly[4].dt*1000).format('HH:mm'))
+                setPlus4temp(Math.floor(json.hourly[4].temp) + '°C')
+                setPlus4humidity(Math.floor(json.hourly[4].humidity) + '%')
+
+                setPlus5(moment(json.hourly[5].dt*1000).format('HH:mm'))
+                setPlus5temp(Math.floor(json.hourly[5].temp) + '°C')
+                setPlus5humidity(Math.floor(json.hourly[5].humidity) + '%')
+
+                setPlus6(moment(json.hourly[6].dt*1000).format('HH:mm'))
+                setPlus6temp(Math.floor(json.hourly[6].temp) + '°C')
+                setPlus6humidity(Math.floor(json.hourly[6].humidity) + '%')
+
+                setPlus7(moment(json.hourly[7].dt*1000).format('HH:mm'))
+                setPlus7temp(Math.floor(json.hourly[7].temp) + '°C')
+                setPlus7humidity(Math.floor(json.hourly[7].humidity) + '%')
+
+                setPlus8(moment(json.hourly[8].dt*1000).format('HH:mm'))
+                setPlus8temp(Math.floor(json.hourly[8].temp) + '°C')
+                setPlus8humidity(Math.floor(json.hourly[8].humidity) + '%')
+                
+                setPlus9(moment(json.hourly[9].dt*1000).format('HH:mm'))
+                setPlus9temp(Math.floor(json.hourly[9].temp) + '°C')
+                setPlus9humidity(Math.floor(json.hourly[9].humidity) + '%')
+            })  
+
+
+        
+    }
+
+    const fetchPreviousDaysData = async () =>{
+      let yesterdayresult = await fetch(previousurl)
+             if ((yesterdayresult.status === 404) || (yesterdayresult.status === 400)){
+                // yeste = await fetch(url_backup)
+                console.log('whyyyyyyyy')
+            }
+            
+            yesterdayresult.json().then(json => {
+                setyesterdaytemp(Math.floor(json.days[2].temp))
+                setyesterdayrain(Math.floor(json.days[2].precip))
+                setyesterdaycondition(json.days[2].conditions)
+                setyesterdayicon(json.days[2].icon)
+
+                settwodaystemp(Math.floor(json.days[1].temp))
+                settwodaysrain(Math.floor(json.days[1].precip))
+                settwodayscondition(json.days[1].conditions)
+                settwodaysicon(json.days[1].icon)
+                
+                setthreedaystemp(Math.floor(json.days[0].temp))
+                setthreedaysrain(Math.floor(json.days[0].precip))
+                setthreedayscondition(json.days[0].conditions)
+                setthreedaysicon(json.days[0].icon)
+
+            })
+
+
+    }
+    
+    let pastdays = [yesterday,yesterdaytemp, yesterdayrain, yesterdaycondition, yesterdayicon, twodaysago, twodaystemp, twodaysrain, twodayscondition, twodaysicon, threedaysago, threedaystemp, threedaysrain, threedayscondition, threedaysicon]
+
+//     fetchData();
+// },[])
 
   
   // const lonlat = [locationlat, locationlon, city]
   
-  const bottomlocation = [citylat, citylon]
-  const fetchBottomData = async () =>{
-             
-    let bottomresult = await fetch(hoururl)
-    if ((bottomresult.status === 404) || (bottomresult === 400)){
-      console.log('help me ffs')
-      bottomresult = await fetch(hoururl_backup)
-     }
-     bottomresult.json().then( json =>{
-       console.log('successful')
-       console.log(json)
-       setNowtemp(Math.floor(json.hourly[0].temp) + '°C')
-       console.log(Math.floor(json.hourly[0].temp) +'///////////////')
-       setNowhumidity(Math.floor(json.hourly[0].humidity) + '%')
-
-       setPlus1(moment(json.hourly[1].dt*1000).format('HH:mm'))
-       setPlus1temp(Math.floor(json.hourly[1].temp) + '°C')
-       setPlus1humidity(Math.floor(json.hourly[1].humidity) + '%')
-
-       setPlus2(moment(json.hourly[2].dt*1000).format('HH:mm'))
-       setPlus2temp(Math.floor(json.hourly[2].temp) + '°C')
-       setPlus2humidity(Math.floor(json.hourly[2].humidity) + '%')
-
-       setPlus3(moment(json.hourly[3].dt*1000).format('HH:mm'))
-       setPlus3temp(Math.floor(json.hourly[3].temp) + '°C')
-       setPlus3humidity(Math.floor(json.hourly[3].humidity) + '%')
-
-       setPlus4(moment(json.hourly[4].dt*1000).format('HH:mm'))
-       setPlus4temp(Math.floor(json.hourly[4].temp) + '°C')
-       setPlus4humidity(Math.floor(json.hourly[4].humidity) + '%')
-
-       setPlus5(moment(json.hourly[5].dt*1000).format('HH:mm'))
-       setPlus5temp(Math.floor(json.hourly[5].temp) + '°C')
-       setPlus5humidity(Math.floor(json.hourly[5].humidity) + '%')
-
-       setPlus6(moment(json.hourly[6].dt*1000).format('HH:mm'))
-       setPlus6temp(Math.floor(json.hourly[6].temp) + '°C')
-       setPlus6humidity(Math.floor(json.hourly[6].humidity) + '%')
-
-       setPlus7(moment(json.hourly[7].dt*1000).format('HH:mm'))
-       setPlus7temp(Math.floor(json.hourly[7].temp) + '°C')
-       setPlus7humidity(Math.floor(json.hourly[7].humidity) + '%')
-
-       setPlus8(moment(json.hourly[8].dt*1000).format('HH:mm'))
-       setPlus8temp(Math.floor(json.hourly[8].temp) + '°C')
-       setPlus8humidity(Math.floor(json.hourly[8].humidity) + '%')
-       
-       setPlus9(moment(json.hourly[9].dt*1000).format('HH:mm'))
-       setPlus9temp(Math.floor(json.hourly[9].temp) + '°C')
-       setPlus9humidity(Math.floor(json.hourly[9].humidity) + '%')
-       setBottomdata([nowtemp, nowhumidity, plus1,plus1temp,plus1humidity, plus2,plus2temp,plus2humidity, plus3,plus3temp,plus3humidity, plus4,plus4temp,plus4humidity, plus5,plus5temp,plus5humidity, plus6,plus6temp,plus6humidity, plus7,plus7temp,plus7humidity, plus8,plus8temp,plus8humidity, plus9,plus9temp,plus9humidity])
-     // bottomdata = [now, hour1, hour2, hour3, hour4, hour5, hour6, hour7, hour8, hour9]
-   })
-   
-}
+  // const bottomlocation = [citylat, citylon]
+  
 
     
   
   useEffect(() => {
     const fetchData = async () => {
       setcoords()
-      // fetchBottomData();
       let badstatus = false
       let result = await fetch(url)
       if ((result.status === 404) || (result.status === 400) ){
         result = await fetch(url_backup)
         badstatus = true
-     }
+     }      
+            console.log('api call weather')
             result.json().then(json => {
               setSunrise(moment(json.sys.sunrise*1000).format('HH:mm'))
               setSunset(moment(json.sys.sunset*1000).format('HH:mm'))
@@ -217,15 +274,13 @@ function App() {
             if(badstatus === true){
               setCity('London')
             }  
-            // fetchBottomData();
-            console.log('jj')
 
           }
       
      fetchData();
-    //  fetchBottomData();
 
     })
+    // let bottomdata = [citylat, citylon]
     let mainWidgetinfo = [temp, feelslike, humidity, low, high, city]
     let suninfo = [sunrise, sunset]
   return (
@@ -244,7 +299,7 @@ function App() {
         </div>
       </div>
       <MainWidget mainWidgetinfo={mainWidgetinfo} />
-      <PreviousWeatherWidget />
+      <PreviousWeatherWidget pastdays={pastdays}/>
       <Bottom bottomdata={bottomdata} />
     </div>
   );
