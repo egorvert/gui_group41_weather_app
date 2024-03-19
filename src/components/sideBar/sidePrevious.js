@@ -8,7 +8,7 @@ import './sidePrevious.css'
 // import partlycloudyimg from '../../assets/icons/ui/partlycloudyWeather.png'
 // import snowyimg from '../../assets/icons/ui/snowyWeather.png'
 
-function PreviousWeatherWidget() {
+function PreviousWeatherWidget({pastdays}) {
     function getPreviousDays() {
         const today = new Date();
         const previousDays = [];
@@ -23,9 +23,9 @@ function PreviousWeatherWidget() {
     }
 
     const previousWeather = [
-        { date: getPreviousDays()[0], rainfall: '0 mm', condition: 'Windy' },
-        { date: getPreviousDays()[1], rainfall: '6 mm', condition: 'Light Rain' },
-        { date: getPreviousDays()[2], rainfall: '16 mm', condition: 'Heavy Rain' }
+        { date: pastdays[0], temp: pastdays[1]+'°C', rainfall: pastdays[2]+'mm', condition: pastdays[3] },
+        { date: pastdays[5], temp: pastdays[6]+'°C', rainfall: pastdays[7]+'mm', condition: pastdays[8] },
+        { date: pastdays[10], temp: pastdays[11]+'°C', rainfall: pastdays[12]+'mm', condition: pastdays[13] }
     ];
 
     return (
@@ -35,9 +35,13 @@ function PreviousWeatherWidget() {
             <div className="previous-day-container">
                 {previousWeather.map((dayWeather, index) => (
                      <div key={index} className="previous-day-layout">
-                        <div>{dayWeather.date}</div>
-                        <div>Rainfall: {dayWeather.rainfall}</div>
-                        <div>Condition: {dayWeather.condition}</div>
+                        <div className='text'>
+
+                            <div className='date'>{dayWeather.date}</div>
+                            <div className='Temp'>Temp: {dayWeather.temp}</div>
+                            <div className='Rain'>Rainfall: {dayWeather.rainfall}</div>
+                            <div className='condition'>Condition: {dayWeather.condition}</div>
+                        </div>
                     </div>
                 ))}
             </div>
