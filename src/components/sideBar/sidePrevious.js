@@ -93,6 +93,8 @@ function PreviousWeatherWidget({pastdays}) {
         // console.log('called')
         set_icons();
     })
+    
+    console.log(pastdays[1])
     let previousWeather = [
         { date: pastdays[0], temp: pastdays[1]+'°C', rainfall: pastdays[2]+'mm', condition: pastdays[3], image: img[0]},
         { date: pastdays[5], temp: pastdays[6]+'°C', rainfall: pastdays[7]+'mm', condition: pastdays[8], image: img[1] },
