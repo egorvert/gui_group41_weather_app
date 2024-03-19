@@ -12,7 +12,7 @@
 
     display: flex;
     flex-flow: column;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
 
     position: absolute;
     top: 25vh; 
@@ -21,34 +21,44 @@
 
 .side-widget-heading {
     text-align: center;
-    font-size: 24px;
+    /* font-size: 24px; */
     font-weight: bold;
-    margin-top: 20px; 
+    margin-top: 5pt; 
 }
 
 .previous-day-container {
     /* text-align: center;
     font-size: 24px;
     font-weight: bold; */
-    margin-top: 20px;
+    margin-top: 5pt;
 }
 .previous-day-layout {
-    padding: 10px;
-    border-bottom: 1px solid #ccc; 
+    display: flex;
+    padding: 1rem;
+    /* border-bottom: 1px solid #ccc;  */
     width: 80%; 
     max-width: 300px; 
     /* text-align: center; */
-    margin-bottom: 10px;
+    /* margin-bottom: 2rem; */
 }
 
 .previous-day-img {
     width: 50px; 
-    height: auto; 
+    height: 50px; 
     margin-right: 10px; 
     border-radius: 50%;
+    align-self: self-end;
 }
 .date, .Temp, .Rain, .Condition{
     align-self: left;
     font-size: 20px;
     font-weight: 400;
+}
+.text{
+    flex-grow: 1;
+}
+.image_side{
+    flex-grow: 0;
+    flex-shrink: 1;
+    align-self: center;
 }
