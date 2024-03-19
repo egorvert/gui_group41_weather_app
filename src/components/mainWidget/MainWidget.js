@@ -2,17 +2,29 @@ import React from 'react'
 import './MainWidget.css'
 import LocationPin from '../../assets/icons/ui/locationPin.svg'
 import GreenTick from '../../assets/icons/ui/greenTick.svg'
-import LargeSun from '../../assets/icons/weather/sunLarge.svg'
+// import LargeSun from '../../assets/icons/weather/sunLarge.svg'
+import clear from '../../assets/icons/ui/clear.png'
+import cloudy from '../../assets/icons/ui/cloudy.png'
+import fog from '../../assets/icons/ui/fog.png'
+import heavyrain from '../../assets/icons/ui/heavyrain.png'
+import lightrain from '../../assets/icons/ui/lightrain.png'
+import night from '../../assets/icons/ui/night.png'
+import partcloudy from '../../assets/icons/ui/partcloudy.png'
+import snow from '../../assets/icons/ui/snow.png'
+import wind from'../../assets/icons/ui/wind.png'
+import storm from '../../assets/icons/ui/storm.png'
 import { useState, useEffect } from 'react';
 
 function MainWidget({mainWidgetinfo}) {
   // console.log(mainWidgetinfo + '////////////')
+  const [img, setimg] = useState(clear)
   let temp = ''
   let feelslike = ''
   let humidity = ''
   let low = ''
   let high = ''
   let citydisplay= ''
+  let icon = ''
   // console.log(mainWidgetinfo)
   if (mainWidgetinfo === undefined){
  }
@@ -24,6 +36,8 @@ function MainWidget({mainWidgetinfo}) {
      low = mainWidgetinfo[3]
      high = mainWidgetinfo[4]
      citydisplay= mainWidgetinfo[5]
+     icon = mainWidgetinfo[6]
+
   }
 
   // let url_backup = ""
@@ -77,6 +91,39 @@ function MainWidget({mainWidgetinfo}) {
   //   })
 
   // const [Location, SetLocation] = useState("London")
+
+  useEffect(()=>{
+    function set_icons(){
+      console.log('yes')
+      console.log(icon)
+      if ((icon === '0dn')){
+        setimg(clear)
+      }
+      else if((icon === '01n')){
+        setimg(night)
+      }
+      else if((icon === '02d') || (icon === '02n') || (icon === '03d') || (icon === '03n') || (icon === '04d') || (icon === '04n')){
+        console.log('heheh')
+        setimg(cloudy)
+      }
+      else if((icon === '09d') || (icon === '09n')){
+        setimg(lightrain)
+      }
+      else if((icon === '10d') || (icon === '10n')){
+        setimg(heavyrain)
+      }
+      else if((icon ==='11d') || (icon ==='11n')){
+        setimg(storm)
+      }
+      else if((icon === '13d') || (icon ==='13n')){
+        setimg(snow)
+      }
+      else if((icon === '50d') || (icon === '50n')){
+        setimg(fog)
+      }
+    }
+    set_icons()
+  })
   return (
     <div className='wrapper'>
         <div className='widget-header'>
@@ -95,7 +142,7 @@ function MainWidget({mainWidgetinfo}) {
               <p>{temp}</p>
               <p className='degree-sign'>o</p>
             </div>
-            <img src={LargeSun} alt="main sun icon" />
+            <img src={img} alt="main sun icon" className='image_main'/>
         </div>
 
         <div className='widget-footer'>
