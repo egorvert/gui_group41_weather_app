@@ -1,27 +1,28 @@
 .Wrapper_Bottom{
-    width: fill;
-    height: 160px;
+    width: 90vw;
+    height: 20vh;
     border-radius: 20px;
     background-color: rgba(246, 246, 246, 0.5);
     
     border-width: 0.5pt;
 
-    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75);
-    box-shadow: inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1);
-    box-shadow: inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: 0 0.2em 1em 0.2em rgba(68, 68, 68, 0.75),
+                inset 0.1em 0.1em 6em 0 rgba(149, 149, 149, 0.1),
+                inset -0.1em -0.1em 6em 0 rgba(149, 149, 149, 0.1);
     backdrop-filter: blur(10px);
 
     display: flex;
-    margin-left: 5rem;
-    margin-right: 5rem;
+    left: 5vw;
+    right: 5vw;
     position: absolute;
+    top: 75vh;
     bottom: 5vh;
 }
 
 .hourly{
     padding-top: 2%;
     width: 10%;
-    height: 160px;
+    height: 100%;
     margin-left: 1rem;
     margin-right: 1rem;
     align-self: center;
@@ -31,6 +32,6 @@
     text-align: center;
 }
 .image_condition{
-    width: 60px;
-    height: 60px;
+    width: 3em;
+    height: 3em;
 }

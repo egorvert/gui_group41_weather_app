@@ -2,17 +2,16 @@
     right: 5rem;
     display: flex;
     justify-content: flex-start;
-
 }
-.Wrapper-left {
-    width: 80px;
-    height: 120px;
+.Wrapper-left, .Wrapper-right {
+    width: 5vw;
+    height: 11vh;
     border-radius: 20px;
     background-color: rgba(246, 246, 246, 0.5);
 
-    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75);
-    box-shadow: inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1);
-    box-shadow: inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: 0 0.2em 1em 0.2em rgba(68, 68, 68, 0.75),
+                inset 0.1em 0.1em 6em 0 rgba(149, 149, 149, 0.1),
+                inset -0.1em -0.1em 6em 0 rgba(149, 149, 149, 0.1);
     backdrop-filter: blur(10px);
 
     color: #000;
@@ -20,28 +19,20 @@
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
+    margin-right: 3vw;
 
 }
 
-.Wrapper-right {
-    width: 80px;
-    height: 120px;
-    border-radius: 20px;
-    background-color: rgba(246, 246, 246, 0.5);
-
-    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75);
-    box-shadow: inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1);
-    box-shadow: inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
-    backdrop-filter: blur(10px);
-
-    color: #000;
-
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
-    margin-left: 15pt;
-}
-
-.Top, .Sunset-Time, .Sunrise-Time{
+.Sunset-Time, .Sunrise-Time{
+    font-size: 0.8em;
     align-self: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+}
+.Top{
+    align-self: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
 }

@@ -1,12 +1,12 @@
 .side-widget {
-    width: 350px; 
-    height: 450px;
+    width: 25vw; 
+    height: 50vh;
     border-radius: 25px;
     background-color: rgba(246, 246, 246, 0.5);
 
-    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75);
-    box-shadow: inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1);
-    box-shadow: inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: 0 0.2em 1em 0.2em rgba(68, 68, 68, 0.75),
+                inset 0.1em 0.1em 6em 0 rgba(149, 149, 149, 0.1),
+                inset -0.1em -0.1em 6em 0 rgba(149, 149, 149, 0.1);
     backdrop-filter: blur(10px);
     color: #000;
 
@@ -14,51 +14,54 @@
     flex-flow: column;
     /* justify-content: flex-start; */
 
+    top: 20vh; 
+    right: 5vw;
     position: absolute;
-    top: 25vh; 
-    right: 5rem; 
 }
 
 .side-widget-heading {
     text-align: center;
-    /* font-size: 24px; */
+    font-size: 1rem;
     font-weight: bold;
-    margin-top: 5pt; 
+    margin-top: 1.5rem;
+    margin-left: 0.2rem;
 }
 
 .previous-day-container {
     /* text-align: center;
     font-size: 24px;
     font-weight: bold; */
-    margin-top: 5pt;
+    margin-top: 1em;
 }
 .previous-day-layout {
     display: flex;
     padding: 1rem;
     /* border-bottom: 1px solid #ccc;  */
     width: 80%; 
-    max-width: 300px; 
+    max-width: 18rem; 
     /* text-align: center; */
     /* margin-bottom: 2rem; */
 }
 
 .previous-day-img {
-    width: 50px; 
-    height: 50px; 
-    margin-right: 10px; 
-    border-radius: 50%;
+    width: 1rem; 
+    height: 1rem; 
+    /* margin-right: 1rem;  */
+    /* border-radius: 50%; */
     align-self: self-end;
 }
-.date, .Temp, .Rain, .Condition{
+/* .date, .Temp, .Rain, .Condition{
     align-self: left;
-    font-size: 20px;
-    font-weight: 400;
-}
+    font-size: 0.8rem;
+    /* font-weight: 400; */
+/* }  */
 .text{
+    align-self: left;
+    font-size: 1rem;
     flex-grow: 1;
 }
 .image_side{
     flex-grow: 0;
     flex-shrink: 1;
     align-self: center;
-}
+} 

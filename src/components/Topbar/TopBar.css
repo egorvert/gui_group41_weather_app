@@ -1,16 +1,16 @@
 .Wrapper_Top{
     display: flex;
-    left: 5rem;
-    margin-left: 5rem;
-    margin-right: 5rem;
-    padding-top: 5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding-top: 2vh;
+    align-items: center;
 }
 .Search{
-    flex-grow: 1;
-    margin-right: 10pt;
+    flex-grow: 2;
+    margin-right: 2vh;
 
 }
 .Sun{
-    flex-grow: 0;
-    margin-left: 10pt;
+    flex-grow: 1;
+    margin-left: 2vh;
 }
