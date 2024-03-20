@@ -17,13 +17,15 @@ import storm from '../../assets/icons/ui/storm.png'
 import { useState, useEffect } from 'react';
 
 function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
-  // console.log(mainWidgetinfo + '////////////')
+  //sets all the variables using the array passed down from the app
   let temp = ''
   let feelslike = ''
   let humidity = ''
   let low = ''
   let high = ''
   let citydisplay= ''
+  let icon = mainWidgetinfo[6]
+
   if (mainWidgetinfo === undefined){
  }
   else{
@@ -58,15 +60,6 @@ function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
 
   //sets the image that is displayed to a default 
   const [img, setimg] = useState(clear)
-
-  //sets all the variables using the array passed down from the app
-    let temp = mainWidgetinfo[0]
-    let feelslike = mainWidgetinfo[1]
-    let humidity = mainWidgetinfo[2]
-    let low = mainWidgetinfo[3]
-    let high = mainWidgetinfo[4]
-    let citydisplay= mainWidgetinfo[5]
-    let icon = mainWidgetinfo[6]
   
   useEffect(()=>{
     //sets the icon to match the code gien to it by the api call
