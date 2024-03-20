@@ -1,20 +1,17 @@
 import React from "react";
 import './Bottom.css';
 import { useState, useEffect } from 'react';
-import moment from 'moment'; 
 import clear from '../../assets/icons/ui/clear.png'
 import cloudy from '../../assets/icons/ui/cloudy.png'
 import fog from '../../assets/icons/ui/fog.png'
 import heavyrain from '../../assets/icons/ui/heavyrain.png'
 import lightrain from '../../assets/icons/ui/lightrain.png'
 import night from '../../assets/icons/ui/night.png'
-import partcloudy from '../../assets/icons/ui/partcloudy.png'
 import snow from '../../assets/icons/ui/snow.png'
-import wind from'../../assets/icons/ui/wind.png'
 import storm from '../../assets/icons/ui/storm.png'
 
 function Bottom({bottomdata}){
-    //29
+    //the below sets the icon data that is passed through from the app file so that the images for corresponding sections can be set
     let iconnow = bottomdata[29]
     let iconplus1 = bottomdata[30]
     let iconplus2 = bottomdata[31]
@@ -25,7 +22,8 @@ function Bottom({bottomdata}){
     let iconplus7 = bottomdata[36]
     let iconplus8 = bottomdata[37]
     let iconplus9 = bottomdata[38]
-    console.log(bottomdata)
+    
+    //sets the image to clear as default for each hour interval and usestate is used to update the image 
     const [nowimg, setnowimg] =useState(clear)
     const [plus1img, setplus1img] = useState(clear)
     const [plus2img, setplus2img] = useState(clear)
@@ -36,8 +34,12 @@ function Bottom({bottomdata}){
     const [plus7img, setplus7img] = useState(clear)
     const [plus8img, setplus8img] = useState(clear)
     const [plus9img, setplus9img] = useState(clear)
+
+    //set the icons as the component is rendered
     useEffect(() =>{
         function set_icons(){
+            //the same code is used for each hour interval
+            //the icon codes represent pa forecast prediction and by comparing it will set the corresponding image
         if (( iconnow === '01dn')){
             setnowimg(clear)
           }
@@ -63,6 +65,7 @@ function Bottom({bottomdata}){
           else if((iconnow === '50d') || (iconnow === '50n')){
             setnowimg(fog)
           }
+          //different hour mark
           if (( iconplus2 === '01d')){
             setplus2img(clear)
           }
@@ -88,6 +91,8 @@ function Bottom({bottomdata}){
           else if((iconplus2 === '50d') || (iconplus2 === '50n')){
             setplus2img(fog)
           }
+          
+          //different hour mark
           if (( iconplus3 === '01d')){
             setplus3img(clear)
           }
@@ -113,6 +118,8 @@ function Bottom({bottomdata}){
           else if((iconplus3 === '50d') || (iconplus3 === '50n')){
             setplus3img(fog)
           }
+          
+          //different hour mark
           if (( iconplus4 === '01d')){
             setplus4img(clear)
           }
@@ -138,6 +145,8 @@ function Bottom({bottomdata}){
           else if((iconplus4 === '50d') || (iconplus4 === '50n')){
             setplus4img(fog)
           }
+          
+          //different hour mark
           if (( iconplus5 === '01d')){
             setplus5img(clear)
           }
@@ -145,7 +154,7 @@ function Bottom({bottomdata}){
             setplus5img(night)
           }
           else if((iconplus5 === '02d') || (iconplus5 === '02n') || (iconplus5 === '03d') || (iconplus5 === '03n') || (iconplus5 === '04d') || (iconplus5 === '04n')){
-            // console.log('change 5 //// '    + iconplus5 )
+            
             setplus5img(cloudy)
           }
           else if((iconplus5 === '09d') || (iconplus5 === '09n')){
@@ -163,6 +172,8 @@ function Bottom({bottomdata}){
           else if((iconplus5 === '50d') || (iconplus5 === '50n')){
             setplus5img(fog)
           }
+          
+          //different hour mark
           if (( iconplus6 === '01d')){
             setplus6img(clear)
           }
@@ -188,6 +199,7 @@ function Bottom({bottomdata}){
           else if((iconplus6 === '50d') || (iconplus6 === '50n')){
             setplus6img(fog)
           }
+          //different hour mark
           if (( iconplus7 === '01d')){
             setplus7img(clear)
           }
@@ -213,6 +225,8 @@ function Bottom({bottomdata}){
           else if((iconplus7 === '50d') || (iconplus7 === '50n')){
             setplus7img(fog)
           }
+          
+          //different hour mark
           if (( iconplus8 === '01d')){
             setplus8img(clear)
           }
@@ -238,6 +252,8 @@ function Bottom({bottomdata}){
           else if((iconplus8 === '50d') || (iconplus8 === '50n')){
             setplus8img(fog)
           }
+          
+          //different hour mark
           if (( iconplus9 === '01d')){
             setplus9img(clear)
           }
@@ -263,6 +279,8 @@ function Bottom({bottomdata}){
           else if((iconplus9 === '50d') || (iconplus9 === '50n')){
             setplus9img(fog)
           }
+          
+          //different hour mark
           if (( iconplus1 === '01d')){
             setplus1img(clear)
           }
@@ -290,109 +308,14 @@ function Bottom({bottomdata}){
           }
         }
         set_icons()
+        // call the function before ending the useeffect
     })
-    // let url_backup = ""
-    // const apikey = "6e64a78c03e21e2143da3ea13650b0de"
-    // const [locationlat, setLocationlat] = useState(bottomdata[0])
-    // const [locationlon, setLocationlon] = useState(bottomdata[1])
-    // useEffect(() =>{
-    //     const setcoords = async () =>{
-    //         setLocationlat(lonlat[0])
-    //         setLocationlat(lonlat[1])
-    //         let result = await fetch(coordsurl)
-    //         if ((result.status === 404) || (result.status === 400)){
-    //             console.log('iiiii')
-    //         }
-    //         else{
-    //             result.json().then(json => {
-    //                 setLocationlat(json[0].lat)
-    //                 setLocationlon(json[0].lon)
-    //                 console.log(locationlat + ' jjjjjjj' + json[0].lat)
-
-    //             })
-    //         }
-    //     }
-    //     setcoords();
-    // },[])
-    // console.log(locationlat)
-    // const city = lonlat[2]
-    // let locationlat = 51.5
-    // let locationlon = 0.12
-    // if(bottomlocation[0] instanceof Object){
-    // }
-    // else{
-    //     locationlat = bottomlocation[0]
-    //     locationlon = bottomlocation[1]
-    // }
     
-    // console.log(bottomlocation)
-    // let url = `https://api.openweathermap.org/data/3.0/onecall?lat=${locationlat}&lon=${locationlon}&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
-    // url_backup = `https://api.openweathermap.org/data/3.0/onecall?lat=51.5&lon=0.12&exclude=current,daily,minutely,alerts&units=Metric&appid=${apikey}`
-    // let coordsurl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apikey}`
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         console.log(bottomdata[0])
-    //              let result = await fetch(url)
-    //              if ((result.status === 404) || (result.status === 400)){
-    //                 result = await fetch(url_backup)
-    //                 console.log('whyyyyyyyy')
-    //             }
-                
-    //             result.json().then(json => {
-    //                 console.log(locationlat + 'llllllllllllll')
-    //                 console.log(locationlon)
-    //                 console.log(json)
-    //                 setNowtemp(Math.floor(json.hourly[0].temp) + '°C')
-    //                 setNowhumidity(Math.floor(json.hourly[0].humidity) + '%')
-
-    //                 setPlus1(moment(json.hourly[1].dt*1000).format('HH:mm'))
-    //                 setPlus1temp(Math.floor(json.hourly[1].temp) + '°C')
-    //                 setPlus1humidity(Math.floor(json.hourly[1].humidity) + '%')
-
-    //                 setPlus2(moment(json.hourly[2].dt*1000).format('HH:mm'))
-    //                 setPlus2temp(Math.floor(json.hourly[2].temp) + '°C')
-    //                 setPlus2humidity(Math.floor(json.hourly[2].humidity) + '%')
-
-    //                 setPlus3(moment(json.hourly[3].dt*1000).format('HH:mm'))
-    //                 setPlus3temp(Math.floor(json.hourly[3].temp) + '°C')
-    //                 setPlus3humidity(Math.floor(json.hourly[3].humidity) + '%')
-
-    //                 setPlus4(moment(json.hourly[4].dt*1000).format('HH:mm'))
-    //                 setPlus4temp(Math.floor(json.hourly[4].temp) + '°C')
-    //                 setPlus4humidity(Math.floor(json.hourly[4].humidity) + '%')
-
-    //                 setPlus5(moment(json.hourly[5].dt*1000).format('HH:mm'))
-    //                 setPlus5temp(Math.floor(json.hourly[5].temp) + '°C')
-    //                 setPlus5humidity(Math.floor(json.hourly[5].humidity) + '%')
-
-    //                 setPlus6(moment(json.hourly[6].dt*1000).format('HH:mm'))
-    //                 setPlus6temp(Math.floor(json.hourly[6].temp) + '°C')
-    //                 setPlus6humidity(Math.floor(json.hourly[6].humidity) + '%')
-
-    //                 setPlus7(moment(json.hourly[7].dt*1000).format('HH:mm'))
-    //                 setPlus7temp(Math.floor(json.hourly[7].temp) + '°C')
-    //                 setPlus7humidity(Math.floor(json.hourly[7].humidity) + '%')
-
-    //                 setPlus8(moment(json.hourly[8].dt*1000).format('HH:mm'))
-    //                 setPlus8temp(Math.floor(json.hourly[8].temp) + '°C')
-    //                 setPlus8humidity(Math.floor(json.hourly[8].humidity) + '%')
-                    
-    //                 setPlus9(moment(json.hourly[9].dt*1000).format('HH:mm'))
-    //                 setPlus9temp(Math.floor(json.hourly[9].temp) + '°C')
-    //                 setPlus9humidity(Math.floor(json.hourly[9].humidity) + '%')
-    //             })  
-
-
-            
-    //     }
-
-    //     fetchData();
-    // },[])
-
     return(
-        <div className="Wrapper_Bottom">
+        <div className="Wrapper_Bottom"> 
+        {/* sets a wrapper for the whole bottom section */}
             <div className="hourly">
+                {/* boiler plate template for the each hour intervals */}
                 <div className="temp">
                     {bottomdata[0]}
                 </div>

@@ -4,14 +4,13 @@ import clear from '../../assets/icons/ui/clear.png'
 import cloudy from '../../assets/icons/ui/cloudy.png'
 import fog from '../../assets/icons/ui/fog.png'
 import heavyrain from '../../assets/icons/ui/heavyrain.png'
-import lightrain from '../../assets/icons/ui/lightrain.png'
 import night from '../../assets/icons/ui/night.png'
-import partcloudy from '../../assets/icons/ui/partcloudy.png'
 import snow from '../../assets/icons/ui/snow.png'
 import wind from'../../assets/icons/ui/wind.png'
 import { useEffect } from 'react';
 
 function PreviousWeatherWidget({pastdays}) {
+    //sets the icons to be accessed when assessing the previous days 
     let icons = [pastdays[4], pastdays[9], pastdays[14]]
     const [yesterdayimg, setyesterdayimg] = useState(clear)
     const [twodaysimg, settwodaysimg] = useState(clear)
@@ -20,8 +19,7 @@ function PreviousWeatherWidget({pastdays}) {
     
     useEffect(()=>{
         function set_icons(){
-            // console.log('entered')
-
+            // sets each of the previous days icons based on the description given by the external api
             if ((icons[0] === 'cloudy') || (icons[0] === 'partly-cloudy-day') || (icons[0] === 'partly-cloudy-night')){
                 setyesterdayimg(cloudy)
             }
@@ -90,17 +88,14 @@ function PreviousWeatherWidget({pastdays}) {
 
             
         }
-        // console.log('called')
         set_icons();
     })
-    
-    console.log(pastdays[1])
+    //sets all the data to be easily accessed to create the previous days data
     let previousWeather = [
         { date: pastdays[0], temp: pastdays[1]+'°C', rainfall: pastdays[2]+'mm', condition: pastdays[3], image: img[0]},
         { date: pastdays[5], temp: pastdays[6]+'°C', rainfall: pastdays[7]+'mm', condition: pastdays[8], image: img[1] },
         { date: pastdays[10], temp: pastdays[11]+'°C', rainfall: pastdays[12]+'mm', condition: pastdays[13], image: img[2] }
     ];
-    // let yesterday= pastdays[0]
     
 
     return (
