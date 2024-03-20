@@ -1,6 +1,6 @@
 .Wrapper_Bottom{
     width: fill;
-    height: 120px;
+    height: 160px;
     border-radius: 20px;
     background-color: rgba(246, 246, 246, 0.5);
     
@@ -19,9 +19,9 @@
 }
 
 .hourly{
-
-    width: 80px;
-    height: 120px;
+    padding-top: 2%;
+    width: 10%;
+    height: 160px;
     margin-left: 1rem;
     margin-right: 1rem;
     align-self: center;
@@ -29,4 +29,8 @@
 .temp, .time, .humidity, .img_condition{
     align-self: center;
     text-align: center;
+}
+.image_condition{
+    width: 60px;
+    height: 60px;
 }
