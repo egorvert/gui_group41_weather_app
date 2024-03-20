@@ -2,100 +2,68 @@ import React from 'react'
 import './MainWidget.css'
 import LocationPin from '../../assets/icons/ui/locationPin.svg'
 import GreenTick from '../../assets/icons/ui/greenTick.svg'
-// import LargeSun from '../../assets/icons/weather/sunLarge.svg'
+import AmberWarning from '../../assets/icons/ui/amberWarning.svg'
+import RedExclamation from '../../assets/icons/ui/redExclamation.svg'
+import LargeSun from '../../assets/icons/weather/sunLarge.svg'
+import { useState, useEffect } from 'react';
 import clear from '../../assets/icons/ui/clear.png'
 import cloudy from '../../assets/icons/ui/cloudy.png'
 import fog from '../../assets/icons/ui/fog.png'
 import heavyrain from '../../assets/icons/ui/heavyrain.png'
 import lightrain from '../../assets/icons/ui/lightrain.png'
 import night from '../../assets/icons/ui/night.png'
-import partcloudy from '../../assets/icons/ui/partcloudy.png'
 import snow from '../../assets/icons/ui/snow.png'
-import wind from'../../assets/icons/ui/wind.png'
 import storm from '../../assets/icons/ui/storm.png'
 import { useState, useEffect } from 'react';
 
-function MainWidget({mainWidgetinfo}) {
-  // console.log(mainWidgetinfo + '////////////')
-  const [img, setimg] = useState(clear)
+function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
+  //sets all the variables using the array passed down from the app
   let temp = ''
   let feelslike = ''
   let humidity = ''
   let low = ''
   let high = ''
   let citydisplay= ''
-  let icon = ''
-  // console.log(mainWidgetinfo)
+  let icon = mainWidgetinfo[6]
+
   if (mainWidgetinfo === undefined){
  }
   else{
-    // console.log('good' +mainWidgetinfo)
-    temp = mainWidgetinfo[0]
+     temp = mainWidgetinfo[0]
      feelslike = mainWidgetinfo[1]
      humidity = mainWidgetinfo[2]
      low = mainWidgetinfo[3]
      high = mainWidgetinfo[4]
      citydisplay= mainWidgetinfo[5]
-     icon = mainWidgetinfo[6]
-
   }
 
-  // let url_backup = ""
-  //   const apikey = "6e64a78c03e21e2143da3ea13650b0de"
-  //   const locationlat = lonlat[0]
-  //   const locationlon = lonlat[1]
-  //   const city = lonlat[2]
-  //   const [citydisplay, setCity] = useState('London')
-    
-  //   const [temp, setTemp] = useState('')
-  //   const [humidity, setHumidity] = useState('')
-  //   const [feelslike, setFeelslike] = useState('')
-  //   const [high, setHigh] =useState('')
-  //   const [low, setLow] = useState('')
-  //   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=Metric&appid=${apikey}`
-  //   if (typeof locationlat === "number"){
-  //     url_backup = `https://api.openweathermap.org/data/2.5/weather?lat=${locationlat}&lon=${locationlon}&units=Metric&appid=${apikey}`
+  // Safety rating calculations
+  let rating = 100;
+  let safeOut = []
 
-  //   }
-  //   else{
-  //       url_backup = `https://api.openweathermap.org/data/2.5/weather?q=London&units=Metric&appid=${apikey}`
-  //   }
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       let result = await fetch(url)
-      //   let badstatus = false
-      //        if ((result.status === 404) || (result.status === 400)){
-      //           badstatus = true
-      //           result = await fetch(url_backup)
-      //           // setCity('London')
-      //       }
-      //       result.json().then(json => {
-      //           setTemp(Math.floor(json.main.temp))
-      //           setFeelslike(Math.floor(json.main.feels_like))
-      //           setHumidity(Math.floor(json.main.humidity))
-      //           setLow(Math.floor(json.main.temp_min))
-      //           setHigh(Math.floor(json.main.temp_max))
-      //           if(badstatus === false){
-      //             setCity(city)
-      //           }
-      //           else{
-      //             setCity('London')
-      //           }
-      //       })  
+  if (temp < 0) {rating -= 10}
+  if (humidity > 85) {rating -= 10}
+  if (previousWeather[4] === "rain") {rating -= 30}
+  if (previousWeather[9] === "rain") {rating -= 20}
+  if (previousWeather[14] === "rain") {rating -= 10}
+  for (let i = 1; i <= 28; i += 3) {
+    if (parseInt(futureWeather[i]) >= 85) {rating -= 5}
+  }
 
+  if (rating >= 70) {
+    safeOut = ["Safe to Climb Today", "safe-status", GreenTick]
+  } else if (rating >= 30 && rating < 70) {
+    safeOut = ["Take Care Climbing Today", "warning-status", AmberWarning]
+  } else if (rating < 30) {
+    safeOut = ["Dangerous to Climb Today", "danger-status", RedExclamation]
+  }
 
-        
-      //   }
-
-      // fetchData();
-  //   })
-
-  // const [Location, SetLocation] = useState("London")
-
+  //sets the image that is displayed to a default 
+  const [img, setimg] = useState(clear)
+  
   useEffect(()=>{
+    //sets the icon to match the code gien to it by the api call
     function set_icons(){
-      console.log('yes')
-      console.log(icon)
       if ((icon === '0dn')){
         setimg(clear)
       }
@@ -131,9 +99,9 @@ function MainWidget({mainWidgetinfo}) {
               <img src={LocationPin} alt="location pin icon" />
               <p>{citydisplay}</p>
             </div>
-            <div className='safety-status'>
-              <img src={GreenTick} alt="safe to climb tick" />
-              <p>Safe To Climb Today</p>
+            <div className={safeOut[1]}>
+              <img src={safeOut[2]} alt="safe to climb tick" />
+              <p>{safeOut[0]}</p>
             </div>
         </div>
 
