@@ -41,12 +41,31 @@
     gap: 4px;
 }
 
-.safety-status {
+.safe-status {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4px;
     color: #53BB2F;
+    width: fit-content;
+}
+
+.warning-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #EABE25;
+    width: fit-content;
+}
+
+.danger-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: #D01F1F;
+    width: fit-content;
 }
 
 .widget-body {

@@ -2,6 +2,10 @@ import React from 'react'
 import './MainWidget.css'
 import LocationPin from '../../assets/icons/ui/locationPin.svg'
 import GreenTick from '../../assets/icons/ui/greenTick.svg'
+import AmberWarning from '../../assets/icons/ui/amberWarning.svg'
+import RedExclamation from '../../assets/icons/ui/redExclamation.svg'
+import LargeSun from '../../assets/icons/weather/sunLarge.svg'
+import { useState, useEffect } from 'react';
 import clear from '../../assets/icons/ui/clear.png'
 import cloudy from '../../assets/icons/ui/cloudy.png'
 import fog from '../../assets/icons/ui/fog.png'
@@ -12,7 +16,46 @@ import snow from '../../assets/icons/ui/snow.png'
 import storm from '../../assets/icons/ui/storm.png'
 import { useState, useEffect } from 'react';
 
-function MainWidget({mainWidgetinfo}) {
+function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
+  // console.log(mainWidgetinfo + '////////////')
+  let temp = ''
+  let feelslike = ''
+  let humidity = ''
+  let low = ''
+  let high = ''
+  let citydisplay= ''
+  if (mainWidgetinfo === undefined){
+ }
+  else{
+     temp = mainWidgetinfo[0]
+     feelslike = mainWidgetinfo[1]
+     humidity = mainWidgetinfo[2]
+     low = mainWidgetinfo[3]
+     high = mainWidgetinfo[4]
+     citydisplay= mainWidgetinfo[5]
+  }
+
+  // Safety rating calculations
+  let rating = 100;
+  let safeOut = []
+
+  if (temp < 0) {rating -= 10}
+  if (humidity > 85) {rating -= 10}
+  if (previousWeather[4] === "rain") {rating -= 30}
+  if (previousWeather[9] === "rain") {rating -= 20}
+  if (previousWeather[14] === "rain") {rating -= 10}
+  for (let i = 1; i <= 28; i += 3) {
+    if (parseInt(futureWeather[i]) >= 85) {rating -= 5}
+  }
+
+  if (rating >= 70) {
+    safeOut = ["Safe to Climb Today", "safe-status", GreenTick]
+  } else if (rating >= 30 && rating < 70) {
+    safeOut = ["Take Care Climbing Today", "warning-status", AmberWarning]
+  } else if (rating < 30) {
+    safeOut = ["Dangerous to Climb Today", "danger-status", RedExclamation]
+  }
+
   //sets the image that is displayed to a default 
   const [img, setimg] = useState(clear)
 
@@ -24,7 +67,6 @@ function MainWidget({mainWidgetinfo}) {
     let high = mainWidgetinfo[4]
     let citydisplay= mainWidgetinfo[5]
     let icon = mainWidgetinfo[6]
-
   
   useEffect(()=>{
     //sets the icon to match the code gien to it by the api call
@@ -64,9 +106,9 @@ function MainWidget({mainWidgetinfo}) {
               <img src={LocationPin} alt="location pin icon" />
               <p>{citydisplay}</p>
             </div>
-            <div className='safety-status'>
-              <img src={GreenTick} alt="safe to climb tick" />
-              <p>Safe To Climb Today</p>
+            <div className={safeOut[1]}>
+              <img src={safeOut[2]} alt="safe to climb tick" />
+              <p>{safeOut[0]}</p>
             </div>
         </div>
 

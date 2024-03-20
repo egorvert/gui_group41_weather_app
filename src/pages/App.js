@@ -114,8 +114,8 @@ function App() {
   const [high, setHigh] = useState('')
   const [low, setLow] = useState('')
   
+  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylon},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=PQ6XCBAJCZXKCCZDQVWWVLERZ&contentType=json`
   //ensure correct api call for previous days data
-  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylat},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=FLTVUZY62E39QKWE5SY7YW7GS&contentType=json`
   //function to set longitude and latitude of the searched city as it is needed for hte hourly updates  
   const setcoords = async () => {
       
@@ -330,7 +330,7 @@ function App() {
           <Sun suninfo={suninfo} />
         </div>
       </div>
-      <MainWidget mainWidgetinfo={mainWidgetinfo} />
+      <MainWidget mainWidgetinfo={mainWidgetinfo} previousWeather={pastdays} futureWeather={bottomdata}/>
       <PreviousWeatherWidget pastdays={pastdays}/>
       <Bottom bottomdata={bottomdata} />
     </div>
