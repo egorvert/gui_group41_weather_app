@@ -2,10 +2,12 @@ import React from 'react'
 import './MainWidget.css'
 import LocationPin from '../../assets/icons/ui/locationPin.svg'
 import GreenTick from '../../assets/icons/ui/greenTick.svg'
+import AmberWarning from '../../assets/icons/ui/amberWarning.svg'
+import RedExclamation from '../../assets/icons/ui/redExclamation.svg'
 import LargeSun from '../../assets/icons/weather/sunLarge.svg'
 import { useState, useEffect } from 'react';
 
-function MainWidget({mainWidgetinfo}) {
+function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
   // console.log(mainWidgetinfo + '////////////')
   let temp = ''
   let feelslike = ''
@@ -18,7 +20,7 @@ function MainWidget({mainWidgetinfo}) {
  }
   else{
     // console.log('good' +mainWidgetinfo)
-    temp = mainWidgetinfo[0]
+     temp = mainWidgetinfo[0]
      feelslike = mainWidgetinfo[1]
      humidity = mainWidgetinfo[2]
      low = mainWidgetinfo[3]
@@ -26,6 +28,28 @@ function MainWidget({mainWidgetinfo}) {
      citydisplay= mainWidgetinfo[5]
   }
 
+  let rating = 100;
+  let safeOut = []
+
+  if (temp < 0) {rating -= 10}
+  if (humidity > 85) {rating -= 10}
+  if (previousWeather[4] === "rain") {rating -= 30}
+  if (previousWeather[9] === "rain") {rating -= 20}
+  if (previousWeather[14] === "rain") {rating -= 10}
+  for (let i = 1; i <= 28; i += 3) {
+    if (parseInt(futureWeather[i]) >= 85) {rating -= 5}
+  }
+
+  if (rating >= 70) {
+    safeOut = ["Safe to Climb Today", "safe-status", GreenTick]
+  } else if (rating >= 30 && rating < 70) {
+    safeOut = ["Take Care Climbing Today", "warning-status", AmberWarning]
+  } else if (rating < 30) {
+    safeOut = ["Dangerous to Climb Today", "danger-status", RedExclamation]
+  }
+
+  console.log(rating)
+  console.log("AAAAAAA", previousWeather, futureWeather)
   // let url_backup = ""
   //   const apikey = "6e64a78c03e21e2143da3ea13650b0de"
   //   const locationlat = lonlat[0]
@@ -84,9 +108,9 @@ function MainWidget({mainWidgetinfo}) {
               <img src={LocationPin} alt="location pin icon" />
               <p>{citydisplay}</p>
             </div>
-            <div className='safety-status'>
-              <img src={GreenTick} alt="safe to climb tick" />
-              <p>Safe To Climb Today</p>
+            <div className={safeOut[1]}>
+              <img src={safeOut[2]} alt="safe to climb tick" />
+              <p>{safeOut[0]}</p>
             </div>
         </div>
 

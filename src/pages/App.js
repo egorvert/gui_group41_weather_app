@@ -94,7 +94,7 @@ function App() {
   const [low, setLow] = useState('')
   console.log(threedaysago.toString())
   
-  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylon},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=HJ662UQ43MYUPLGLYSMPMU9KP&contentType=json`
+  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylon},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=PQ6XCBAJCZXKCCZDQVWWVLERZ&contentType=json`
     const setcoords = async () => {
       
       if ((city === '')) {
@@ -298,7 +298,7 @@ function App() {
           <Sun suninfo={suninfo} />
         </div>
       </div>
-      <MainWidget mainWidgetinfo={mainWidgetinfo} />
+      <MainWidget mainWidgetinfo={mainWidgetinfo} previousWeather={pastdays} futureWeather={bottomdata}/>
       <PreviousWeatherWidget pastdays={pastdays}/>
       <Bottom bottomdata={bottomdata} />
     </div>
