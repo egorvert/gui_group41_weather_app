@@ -20,10 +20,9 @@ function App() {
   const [icon, seticon] = useState('')
   const apikey = "6e64a78c03e21e2143da3ea13650b0de"
   // temp apiikey for previous days FLTVUZY62E39QKWE5SY7YW7GS
-  //second apikey HJ662UQ43MYUPLGLYSMPMU9KP
+  // second apikey HJ662UQ43MYUPLGLYSMPMU9KP
 
-
-  //set the values used for the bottom bar of the page
+  // set the values used for the bottom bar of the page
   const [nowtemp, setNowtemp] = useState('')
     const [nowhumidity, setNowhumidity] = useState('')
     const [nowicon, setnowicon] = useState('')
@@ -107,15 +106,15 @@ function App() {
   }
 
   //set default values for todays api
-
   const [temp, setTemp] = useState('')
   const [humidity, setHumidity] = useState('')
   const [feelslike, setFeelslike] = useState('')
   const [high, setHigh] = useState('')
   const [low, setLow] = useState('')
   
-  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylon},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=PQ6XCBAJCZXKCCZDQVWWVLERZ&contentType=json`
   //ensure correct api call for previous days data
+  let previousurl  = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${citylon},${citylon}/${threedaysago}/${yesterday}?unitGroup=metric&include=days&key=PQ6XCBAJCZXKCCZDQVWWVLERZ&contentType=json`
+  
   //function to set longitude and latitude of the searched city as it is needed for hte hourly updates  
   const setcoords = async () => {
       
@@ -124,24 +123,27 @@ function App() {
       }
       else {
         let result = await fetch(coordsurl)
-        if ((result.status === 404) || (result.status === 400)) {
+        if ((result.status !== 404) || (result.status !== 400)) {
           //if api call is bad due to no city existing does not call the api
-        }
-        else {
-          result.json().then(json => {
-            //sets the city longitude and latitude
-            setCitylat(json[0].lat)
-            setCitylon(json[0].lon)
-            //calls the functions for setting the hourly update and previous days to be apprpriate for the search location
-            fetchBottomData();
-            fetchPreviousDaysData();
-          })
-          
-        }
+            result.json().then(json => {
+              //sets the city longitude and latitude
+              try {
+                setCitylat(json[0].lat)
+                setCitylon(json[0].lon)
+
+              } catch (e) {
+                console.log(e)
+              }
+              //calls the functions for setting the hourly update and previous days to be appropriate for the search location
+              fetchBottomData();
+              fetchPreviousDaysData();
+        })
+      }
+        
       }
     }
     
-    //get locational data if given permissioni
+    //get locational data if given permissions
     function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
@@ -173,16 +175,12 @@ function App() {
         //if the input value is empty then update to empty value or if one character update
         if ((event.target.value.length === 1) || (event.target.value.length===0)) {
           setCity('')
-          
         }
-      }
-      else {
-
       }
     }
   };
 
-  //function to set teh bottomdata
+  //function to set the bottomdata
     const fetchBottomData = async () => {
              let bottomresult = await fetch(hoururl)
              if ((bottomresult.status === 404) || (bottomresult.status === 400)){//if theres an issue it will revert back to the defaul t 
@@ -321,9 +319,8 @@ function App() {
         <div className='Search'>
           <div className='Wrapper_search'>
             <div className='SearchBar'>
-              <input type="text" placeholder="Search" className='search' onKeyDown={onChangeHandler} />
+              <input type="text" placeholder="Search for a new location" className='search' onKeyDown={onChangeHandler} />
             </div>
-
           </div>
         </div>
         <div className='Sun'>

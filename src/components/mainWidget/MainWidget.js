@@ -14,7 +14,6 @@ import lightrain from '../../assets/icons/ui/lightrain.png'
 import night from '../../assets/icons/ui/night.png'
 import snow from '../../assets/icons/ui/snow.png'
 import storm from '../../assets/icons/ui/storm.png'
-import { useState, useEffect } from 'react';
 
 function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
   //sets all the variables using the array passed down from the app
@@ -26,16 +25,12 @@ function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
   let citydisplay= ''
   let icon = mainWidgetinfo[6]
 
-  if (mainWidgetinfo === undefined){
- }
-  else{
-     temp = mainWidgetinfo[0]
-     feelslike = mainWidgetinfo[1]
-     humidity = mainWidgetinfo[2]
-     low = mainWidgetinfo[3]
-     high = mainWidgetinfo[4]
-     citydisplay= mainWidgetinfo[5]
-  }
+  temp = mainWidgetinfo[0]
+  feelslike = mainWidgetinfo[1]
+  humidity = mainWidgetinfo[2]
+  low = mainWidgetinfo[3]
+  high = mainWidgetinfo[4]
+  citydisplay= mainWidgetinfo[5]
 
   // Safety rating calculations
   let rating = 100;
