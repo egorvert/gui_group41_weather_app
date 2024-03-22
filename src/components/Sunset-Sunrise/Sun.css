@@ -1,38 +1,46 @@
 .Wrapper_sun{
-    right: 5rem;
     display: flex;
-    justify-content: flex-start;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+    width: 20vw;
+
+    top: 3vh; 
+    right: 5vw;
+    position: absolute;
 }
-.Wrapper-left, .Wrapper-right {
+
+.item-wrapper {
     width: 5vw;
-    height: 11vh;
+    height: 12vh;
     border-radius: 20px;
     background-color: rgba(246, 246, 246, 0.5);
 
-    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75),
-                inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1),
-                inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: 0 6px 60px 5px rgba(0, 0, 0, 0.25);
+
     backdrop-filter: blur(10px);
 
     color: #000;
 
     display: flex;
     flex-flow: column;
-    justify-content: flex-start;
-    margin-right: 3vw;
+    justify-content: center;
+    align-items: center;
 
+    transition-duration: 0.5s;
 }
 
-.Sunset-Time, .Sunrise-Time{
-    font-size: 0.8em;
-    align-self: center;
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
+.item-wrapper:hover {
+    box-shadow: none;
+    transition-duration: 0.5s;
+    transform: translateY(5px);
 }
-.Top{
-    align-self: center;
-    display: flex;
-    flex-flow: column;
-    justify-content: flex-start;
+
+.time{
+    font-size: 16px;
+}
+
+.image-container{
+    width: 60px;
+    height: 60px;
 }

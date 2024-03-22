@@ -11,7 +11,7 @@ import snow from '../../assets/icons/ui/snow.png'
 import storm from '../../assets/icons/ui/storm.png'
 
 function Bottom({bottomdata}){
-    //the below sets the icon data that is passed through from the app file so that the images for corresponding sections can be set
+    // The below sets the icon data that is passed through from the app file so that the images for corresponding sections can be set
     let iconnow = bottomdata[29]
     let iconplus1 = bottomdata[30]
     let iconplus2 = bottomdata[31]
@@ -23,7 +23,7 @@ function Bottom({bottomdata}){
     let iconplus8 = bottomdata[37]
     let iconplus9 = bottomdata[38]
     
-    //sets the image to clear as default for each hour interval and usestate is used to update the image 
+    // Sets the image to clear as default for each hour interval and use state is used to update the image 
     const [nowimg, setnowimg] =useState(clear)
     const [plus1img, setplus1img] = useState(clear)
     const [plus2img, setplus2img] = useState(clear)
@@ -35,11 +35,11 @@ function Bottom({bottomdata}){
     const [plus8img, setplus8img] = useState(clear)
     const [plus9img, setplus9img] = useState(clear)
 
-    //set the icons as the component is rendered
+    // Set the icons as the component is rendered
     useEffect(() =>{
         function set_icons(){
-            //the same code is used for each hour interval
-            //the icon codes represent pa forecast prediction and by comparing it will set the corresponding image
+            // The same code is used for each hour interval
+            // The icon codes represent pa forecast prediction and by comparing it will set the corresponding image
         if (( iconnow === '01dn')){
             setnowimg(clear)
           }
@@ -47,7 +47,6 @@ function Bottom({bottomdata}){
             setnowimg(night)
           }
           else if((iconnow === '02d') || (iconnow === '02n') || (iconnow === '03d') || (iconnow === '03n') || (iconnow === '04d') || (iconnow === '04n')){
-            console.log('change now //// '    + iconnow )
             setnowimg(cloudy)
           }
           else if((iconnow === '09d') || (iconnow === '09n')){
@@ -65,7 +64,8 @@ function Bottom({bottomdata}){
           else if((iconnow === '50d') || (iconnow === '50n')){
             setnowimg(fog)
           }
-          //different hour mark
+
+          // Different hour mark
           if (( iconplus2 === '01d')){
             setplus2img(clear)
           }
@@ -73,7 +73,6 @@ function Bottom({bottomdata}){
             setplus2img(night)
           }
           else if((iconplus2 === '02d') || (iconplus2 === '02n') || (iconplus2 === '03d') || (iconplus2 === '03n') || (iconplus2 === '04d') || (iconplus2 === '04n')){
-            console.log('change 2 //// '    + iconplus2 )
             setplus2img(cloudy)
           }
           else if((iconplus2 === '09d') || (iconplus2 === '09n')){
@@ -92,7 +91,7 @@ function Bottom({bottomdata}){
             setplus2img(fog)
           }
           
-          //different hour mark
+          // Different hour mark
           if (( iconplus3 === '01d')){
             setplus3img(clear)
           }
@@ -100,7 +99,6 @@ function Bottom({bottomdata}){
             setplus3img(night)
           }
           else if((iconplus3 === '02d') || (iconplus3 === '02n') || (iconplus3 === '03d') || (iconplus3 === '03n') || (iconplus3 === '04d') || (iconplus3 === '04n')){
-            console.log('change 3 //// '    + iconplus3 )
             setplus3img(cloudy)
           }
           else if((iconplus3 === '09d') || (iconplus3 === '09n')){
@@ -119,7 +117,7 @@ function Bottom({bottomdata}){
             setplus3img(fog)
           }
           
-          //different hour mark
+          // Different hour mark
           if (( iconplus4 === '01d')){
             setplus4img(clear)
           }
@@ -127,7 +125,6 @@ function Bottom({bottomdata}){
             setplus4img(night)
           }
           else if((iconplus4 === '02d') || (iconplus4 === '02n') || (iconplus4 === '03d') || (iconplus4 === '03n') || (iconplus4 === '04d') || (iconplus4 === '04n')){
-            console.log('change 4 //// '    + iconplus4 )
             setplus4img(cloudy)
           }
           else if((iconplus4 === '09d') || (iconplus4 === '09n')){
@@ -146,7 +143,7 @@ function Bottom({bottomdata}){
             setplus4img(fog)
           }
           
-          //different hour mark
+          // Different hour mark
           if (( iconplus5 === '01d')){
             setplus5img(clear)
           }
@@ -173,7 +170,7 @@ function Bottom({bottomdata}){
             setplus5img(fog)
           }
           
-          //different hour mark
+          // Different hour mark
           if (( iconplus6 === '01d')){
             setplus6img(clear)
           }
@@ -181,7 +178,6 @@ function Bottom({bottomdata}){
             setplus6img(night)
           }
           else if((iconplus6 === '02d') || (iconplus6 === '02n') || (iconplus6 === '03d') || (iconplus6 === '03n') || (iconplus6 === '04d') || (iconplus6 === '04n')){
-            console.log('heheh')
             setplus6img(cloudy)
           }
           else if((iconplus6 === '09d') || (iconplus6 === '09n')){
@@ -199,7 +195,7 @@ function Bottom({bottomdata}){
           else if((iconplus6 === '50d') || (iconplus6 === '50n')){
             setplus6img(fog)
           }
-          //different hour mark
+          // Different hour mark
           if (( iconplus7 === '01d')){
             setplus7img(clear)
           }
@@ -207,7 +203,6 @@ function Bottom({bottomdata}){
             setplus7img(night)
           }
           else if((iconplus7 === '02d') || (iconplus7 === '02n') || (iconplus7 === '03d') || (iconplus7 === '03n') || (iconplus7 === '04d') || (iconplus7 === '04n')){
-            console.log('heheh')
             setplus7img(cloudy)
           }
           else if((iconplus7 === '09d') || (iconplus7 === '09n')){
@@ -226,7 +221,7 @@ function Bottom({bottomdata}){
             setplus7img(fog)
           }
           
-          //different hour mark
+          // Different hour mark
           if (( iconplus8 === '01d')){
             setplus8img(clear)
           }
@@ -234,7 +229,6 @@ function Bottom({bottomdata}){
             setplus8img(night)
           }
           else if((iconplus8 === '02d') || (iconplus8 === '02n') || (iconplus8 === '03d') || (iconplus8 === '03n') || (iconplus8 === '04d') || (iconplus8 === '04n')){
-            console.log('heheh')
             setplus8img(cloudy)
           }
           else if((iconplus8 === '09d') || (iconplus8 === '09n')){
@@ -253,7 +247,7 @@ function Bottom({bottomdata}){
             setplus8img(fog)
           }
           
-          //different hour mark
+          // Different hour mark
           if (( iconplus9 === '01d')){
             setplus9img(clear)
           }
@@ -261,7 +255,6 @@ function Bottom({bottomdata}){
             setplus9img(night)
           }
           else if((iconplus9 === '02d') || (iconplus9 === '02n') || (iconplus9 === '03d') || (iconplus9 === '03n') || (iconplus9 === '04d') || (iconplus9 === '04n')){
-            console.log('heheh')
             setplus9img(cloudy)
           }
           else if((iconplus9 === '09d') || (iconplus9 === '09n')){
@@ -280,7 +273,7 @@ function Bottom({bottomdata}){
             setplus9img(fog)
           }
           
-          //different hour mark
+          // Different hour mark
           if (( iconplus1 === '01d')){
             setplus1img(clear)
           }
@@ -288,7 +281,6 @@ function Bottom({bottomdata}){
             setplus1img(night)
           }
           else if((iconplus1 === '02d') || (iconplus1 === '02n') || (iconplus1 === '03d') || (iconplus1 === '03n') || (iconplus1 === '04d') || (iconplus1 === '04n')){
-            console.log('heheh')
             setplus1img(cloudy)
           }
           else if((iconplus1 === '09d') || (iconplus1 === '09n')){
@@ -307,8 +299,8 @@ function Bottom({bottomdata}){
             setplus1img(fog)
           }
         }
+        // Call the function before exiting the useEffect hook
         set_icons()
-        // call the function before ending the useeffect
     })
     
     return(
@@ -323,7 +315,7 @@ function Bottom({bottomdata}){
                     {bottomdata[1]}
                 </div>
                 <div className="img_condition">
-                    <img src={nowimg} className="image_condition"></img>
+                    <img src={nowimg} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     now
@@ -337,7 +329,7 @@ function Bottom({bottomdata}){
                     {bottomdata[4]}
                 </div>
                 <div className="img_condition">
-                <img src={plus1img} className="image_condition"></img>
+                <img src={plus1img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[2]}
@@ -351,7 +343,7 @@ function Bottom({bottomdata}){
                     {bottomdata[7]}
                 </div>
                 <div className="img_condition">
-                <img src={plus2img} className="image_condition"></img>
+                <img src={plus2img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[5]}
@@ -365,7 +357,7 @@ function Bottom({bottomdata}){
                     {bottomdata[10]}
                 </div>
                 <div className="img_condition">
-                <img src={plus3img} className="image_condition"></img>
+                <img src={plus3img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[8]}
@@ -379,7 +371,7 @@ function Bottom({bottomdata}){
                     {bottomdata[13]}
                 </div>  
                 <div className="img_condition">
-                <img src={plus4img} className="image_condition"></img>
+                <img src={plus4img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[11]}
@@ -393,7 +385,7 @@ function Bottom({bottomdata}){
                     {bottomdata[16]}
                 </div>
                 <div className="img_condition">
-                <img src={plus5img} className="image_condition"></img>
+                <img src={plus5img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[14]}
@@ -407,7 +399,7 @@ function Bottom({bottomdata}){
                     {bottomdata[19]}
                 </div>
                 <div className="img_condition">
-                <img src={plus6img} className="image_condition"></img>
+                <img src={plus6img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[17]}
@@ -421,7 +413,7 @@ function Bottom({bottomdata}){
                     {bottomdata[22]}
                 </div>
                 <div className="img_condition">
-                <img src={plus7img} className="image_condition"></img>
+                <img src={plus7img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[20]}
@@ -435,7 +427,7 @@ function Bottom({bottomdata}){
                     {bottomdata[25]}
                 </div>
                 <div className="img_condition">
-                <img src={plus8img} className="image_condition"></img>
+                <img src={plus8img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[23]}
@@ -449,7 +441,7 @@ function Bottom({bottomdata}){
                     {bottomdata[28]}
                 </div>
                 <div className="img_condition">
-                <img src={plus9img} className="image_condition"></img>
+                <img src={plus9img} className="image_condition" alt="weather icon"></img>
                 </div>
                 <div className="time">
                     {bottomdata[26]}

@@ -3,35 +3,47 @@
     height: 20vh;
     border-radius: 20px;
     background-color: rgba(246, 246, 246, 0.5);
-    
-    border-width: 0.5pt;
 
-    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75),
-                inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1),
-                inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    box-shadow: 0 6px 60px 5px rgba(0, 0, 0, 0.25),
+                inset 2px 2px 100px 0 rgba(66, 66, 66, 0.1),
+                inset -2px -2px 100px 0 rgba(66, 66, 66, 0.1);
+                
     backdrop-filter: blur(10px);
 
     display: flex;
-    left: 5vw;
-    right: 5vw;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    color: #383838;
+
     position: absolute;
     top: 75vh;
-    bottom: 5vh;
+    left: 5vw;
 }
 
 .hourly{
-    padding-top: 2%;
     width: 10%;
     height: 100%;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+
+    transition-duration: 0.5s;
 }
-.temp, .time, .humidity, .img_condition{
-    align-self: center;
-    text-align: center;
-}
+
 .image_condition{
-    width: 3em;
-    height: 3em;
+    width: 60px;
+    height: 60px;
+}
+
+.temp {
+    font-weight: 500;
+}
+
+.hourly:hover {
+    transition-duration: 0.5s;
+    box-shadow: 0 3px 20px 5px rgba(0, 0, 0, 0.25);
+    transform: translateX(3px);
 }

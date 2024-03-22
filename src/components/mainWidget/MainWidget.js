@@ -4,7 +4,6 @@ import LocationPin from '../../assets/icons/ui/locationPin.svg'
 import GreenTick from '../../assets/icons/ui/greenTick.svg'
 import AmberWarning from '../../assets/icons/ui/amberWarning.svg'
 import RedExclamation from '../../assets/icons/ui/redExclamation.svg'
-import LargeSun from '../../assets/icons/weather/sunLarge.svg'
 import { useState, useEffect } from 'react';
 import clear from '../../assets/icons/ui/clear.png'
 import cloudy from '../../assets/icons/ui/cloudy.png'
@@ -16,7 +15,7 @@ import snow from '../../assets/icons/ui/snow.png'
 import storm from '../../assets/icons/ui/storm.png'
 
 function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
-  //sets all the variables using the array passed down from the app
+  // Sets all the variables using the array passed down from the app
   let temp = ''
   let feelslike = ''
   let humidity = ''
@@ -24,7 +23,7 @@ function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
   let high = ''
   let citydisplay= ''
   let icon = mainWidgetinfo[6]
-
+  
   temp = mainWidgetinfo[0]
   feelslike = mainWidgetinfo[1]
   humidity = mainWidgetinfo[2]
@@ -36,15 +35,18 @@ function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
   let rating = 100;
   let safeOut = []
 
-  if (temp < 0) {rating -= 10}
+  if (temp < 0) {rating -= 10} // If temperature is below 0, deduct 10 safety points
   if (humidity > 85) {rating -= 10}
-  if (previousWeather[4] === "rain") {rating -= 30}
+  if (previousWeather[4] === "rain") {rating -= 30} // If it has rained in the past three days, deduct a decreasing number of safety points
   if (previousWeather[9] === "rain") {rating -= 20}
   if (previousWeather[14] === "rain") {rating -= 10}
+
+  // For each hour in the futureWeather array, deduct 5 safety points if the humidity is above 85%
   for (let i = 1; i <= 28; i += 3) {
     if (parseInt(futureWeather[i]) >= 85) {rating -= 5}
   }
 
+  // Set the safety rating parameters based on the calculated safety rating
   if (rating >= 70) {
     safeOut = ["Safe to Climb Today", "safe-status", GreenTick]
   } else if (rating >= 30 && rating < 70) {
@@ -53,11 +55,11 @@ function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
     safeOut = ["Dangerous to Climb Today", "danger-status", RedExclamation]
   }
 
-  //sets the image that is displayed to a default 
+  // Sets the image that is displayed to a default 
   const [img, setimg] = useState(clear)
   
   useEffect(()=>{
-    //sets the icon to match the code gien to it by the api call
+    // Sets the icon to match the code given to it by the api call
     function set_icons(){
       if ((icon === '0dn')){
         setimg(clear)
@@ -66,7 +68,6 @@ function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
         setimg(night)
       }
       else if((icon === '02d') || (icon === '02n') || (icon === '03d') || (icon === '03n') || (icon === '04d') || (icon === '04n')){
-        console.log('heheh')
         setimg(cloudy)
       }
       else if((icon === '09d') || (icon === '09n')){
@@ -87,6 +88,7 @@ function MainWidget({mainWidgetinfo, previousWeather, futureWeather}) {
     }
     set_icons()
   })
+  
   return (
     <div className='wrapper'>
         <div className='widget-header'>

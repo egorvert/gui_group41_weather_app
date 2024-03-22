@@ -1,20 +1,20 @@
 .wrapper {
-    width: 60vw;
+    width: 52vw;
     height: 50vh;
     border-radius: 25px;
     background-color: rgba(246, 246, 246, 0.5);
-
-    box-shadow: 0, 6px, 60px, 5px, rgba(0, 0, 0, 0.75),
-                inset 2px, 2px, 100px, 0, rgba(66, 66, 66, 0.1),
-                inset -2px, -2px, 100px, 0, rgba(66, 66, 66, 0.1);
+    
+    box-shadow: 0 6px 60px 5px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 100px 0 rgba(66, 66, 66, 0.1),
+    inset -2px -2px 100px 0 rgba(66, 66, 66, 0.1);
     backdrop-filter: blur(10px);
-
+    
     color: #000;
-
+    
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
-
+    
     position: absolute;
     top: 20vh;
     left: 5vw;
@@ -26,7 +26,7 @@
     justify-content: space-between;
     align-items: center;
 
-    font-size: 1.5rem;
+    font-size: 20px;
     font-weight: 400;
 
     width: 90%;
@@ -78,7 +78,7 @@
 
 .temperature {
     margin-left: 5rem;
-    font-size: 10rem;
+    font-size: 180px;
     font-weight: 700;
     
     display: flex;
@@ -88,7 +88,7 @@
 
 .degree-sign {
     margin-top: -80px;
-    font-size: 5rem;
+    font-size: 64px;
     font-weight: 700;
 }
 
@@ -110,6 +110,7 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
 }
+
 .image_main{
     width: 13rem;
     height: 13rem;
